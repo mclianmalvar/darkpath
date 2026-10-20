@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;700&family=Spectral:ital,wght@0,400;0,600;1,400&family=Silkscreen&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400..700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/site.js" defer></script>
 </head>
@@ -71,6 +71,24 @@
         <!-- To add a post: copy one <article class="post"> block, paste it at the top of this list,
              and change its id, date, tags, title and text. Newest posts go first. -->
 
+        <article class="post" id="act-one">
+          <div class="post-meta">
+            <time datetime="2026-10-20">Oct 20, 2026</time>
+            <div class="post-tags"><span>Progress</span><span>Godot</span></div>
+          </div>
+          <div class="post-body">
+            <h2>Act 1 is built, and it's moving to Godot</h2>
+            <p>The first playable version of Dark Path, the MVP, is built in the browser. It covers the start of the campaign: the surprise siege on Day 1, a shorter 10-day countdown, expeditions into the Old Mines, and Invasion I against Gravemaw.</p>
+            <p>That version is now being moved to <strong>Godot 4.3</strong>. The Godot build already plays a whole campaign in an automated test without a single script error: the Prologue, ten countdown days with events and the scout report, an Old Mines expedition, saving and continuing, Invasion I and the end screen. Nobody has played it on screen yet. That comes next.</p>
+            <p>The move also brought two changes:</p>
+            <ul>
+              <li><strong>The map faces north.</strong> The Hollow now march down from the north edge, and Greywatch has its back to the sea cliff. The main road leads to the North gate, and a flank track runs down the east side to the East gate.</li>
+              <li><strong>Tall walls.</strong> Archer Posts, Frost Bells, Ballistas and the Catapult can be built on top of the walls for extra range, and units climb up by wall stairs to fight from the walkway. If a wall falls, whatever stands on it falls too.</li>
+            </ul>
+            <p class="post-next"><strong>Next up:</strong> playing the Godot build on screen, fixing what turns up, and tuning the HUD. Then it goes to friends for feedback.</p>
+          </div>
+        </article>
+
         <article class="post" id="website-launch">
           <div class="post-meta">
             <time datetime="2026-10-20">Oct 20, 2026</time>
@@ -78,7 +96,7 @@
           </div>
           <div class="post-body">
             <h2>The website is live</h2>
-            <p>Dark Path now has a home on the web. There is nothing to play yet, so the site does the next best thing and lets you try out the game's ideas.</p>
+            <p>Dark Path now has a home on the web. There is no public build to play yet, so the site lets you try out the game's ideas instead.</p>
             <ul>
               <li><strong>The countdown.</strong> Hover over any of the 30 days to see what it holds.</li>
               <li><strong>Greywatch.</strong> Click the four rings of the city map to see what each one guards, and what you lose if it falls.</li>
@@ -86,7 +104,6 @@
               <li><strong>The Bestiary.</strong> Hunt the Hollow to learn their names, types and counters.</li>
             </ul>
             <p>Turn on the sound in the top bar to hear strings in the city, a choir in the dungeons and war drums near the Hollow.</p>
-            <p class="post-next"><strong>Next up:</strong> Milestone 1, the defense prototype. A grid, pathfinding, and one tower killing monsters as they walk a path.</p>
           </div>
         </article>
 
@@ -117,9 +134,9 @@
         <p class="side-label">Where things stand</p>
         <ol class="status">
           <li class="done"><b>Design document v1.0</b><span>Done &middot; Oct 19, 2026</span></li>
-          <li class="next"><b>Milestone 1: Defense prototype</b><span>Next</span></li>
-          <li><b>Milestone 2: Dungeon prototype</b><span>Planned</span></li>
-          <li><b>Milestone 3: Core loop</b><span>Planned</span></li>
+          <li class="done"><b>Milestones 1 to 3: prototypes and core loop</b><span>Built in the browser MVP</span></li>
+          <li class="next"><b>Milestone 4: MVP</b><span>In progress &middot; moving to Godot 4.3</span></li>
+          <li><b>Milestone 5: Vertical slice</b><span>Planned</span></li>
         </ol>
         <a class="text-link" href="index.html#roadmap">See the full roadmap</a>
         <a class="btn ghost" href="https://github.com/mclianmalvar/darkpath" target="_blank" rel="noopener">Follow on GitHub</a>

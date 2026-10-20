@@ -53,27 +53,27 @@
   /* ---------- Greywatch map ---------- */
   var RINGS = [
     { name: "Inner Keep", pos: "Ring 1 · the heart",
-      text: "The Warden's seat and the city's last refuge. Shelters built here protect evacuated citizens during an invasion: 20 per shelter at level 1, up to 50 at level 3.",
+      text: "The Warden's seat and the city's last refuge. When you evacuate the Market Ring, its citizens walk here. Shelters to hold them are planned for the full game.",
       fall: "If the Hollow reach the Keep's heart, Greywatch falls and the campaign ends." },
     { name: "Market Ring", pos: "Ring 2",
       text: "Where the Prologue's Brutes strike the gate. Hold the walls on Day 1 and the Market Ring stays open.",
       fall: "Lose the Prologue and it falls on Day 1. Its buildings stop working until you reclaim it during Act 1." },
-    { name: "Farm Ring", pos: "Ring 3",
-      text: "The fields that feed the city, and where sickness can break out. Retaking it is the goal of Act 2.",
+    { name: "Farm Ring", pos: "Ring 3 · planned",
+      text: "The fields beyond the Market Ring. Retaking them is the goal of Act 2, so the Farm Ring is not in the current build.",
       fall: "Citizens left in a breached district are killed. Evacuate them to the Keep's shelters before the walls give." },
     { name: "Outer Wall", pos: "Ring 4 · the first line",
-      text: "Towers, walls and the platforms that hold catapults, trebuchets and cannons. Walls reroute enemy paths, so the layout itself is a defense.",
-      fall: "Climbers scale it, Rams break its gates, and every destroyed section becomes a ruin you must clear and rebuild." }
+      text: "The North gate faces the main road and the East gate the flank track. Towers built on top of the walls get +1 range, and units reach the walkway only by the wall stairs.",
+      fall: "Brutes and Gravemaw smash walls and gates. A tower on a wall falls with it, and every destroyed section becomes a ruin you must clear and rebuild." }
   ];
   var mapCv = document.getElementById("city-map"), mg = mapCv.getContext("2d"), mapTip = document.getElementById("map-tip");
   var ringInfo = document.getElementById("ring-info"), ringTabs = Array.prototype.slice.call(document.querySelectorAll(".ring-tab"));
-  var MW = 160, MH = 120, MCX = 62, MCY = 60, RADII = [11, 24, 38, 50];
+  var MW = 160, MH = 120, MCX = 80, MCY = 88, RADII = [11, 24, 38, 50];
   var ringAt = new Int8Array(MW * MH), mapBase, ringBase = [], ringEdge = [], lanes = [], towers = [];
   var selRing = 0, hoverRing = -1, selAt = 0;
   mapCv.width = MW; mapCv.height = MH;
 
   function ringShape(t) { return 1 + 0.05 * Math.sin(3 * t + 0.5) + 0.03 * Math.sin(7 * t + 2); }
-  function coastX(y) { return 124 + 5 * Math.sin(y * 0.12) + 3 * Math.sin(y * 0.31); }
+  function coastY(x) { return 104 + 3 * Math.sin(x * 0.11) + 2 * Math.sin(x * 0.29); }
 
   function buildMap() {
     var r = rng(2024);
@@ -84,11 +84,12 @@
     for (var y = 0; y < MH; y++) {
       for (var x = 0; x < MW; x++) {
         var dx = x - MCX, dy = y - MCY, t = Math.atan2(dy, dx), d = Math.hypot(dx, dy) / ringShape(t);
-        var sea = x >= coastX(y);
+        var sea = y >= coastY(x);
         var ring = sea ? -1 : d < RADII[0] ? 0 : d < RADII[1] ? 1 : d < RADII[2] ? 2 : d < RADII[3] ? 3 : -1;
         ringAt[y * MW + x] = ring;
         var c;
-        if (sea) c = x < coastX(y) + 1.5 ? "#2a3a4f" : (y % 3 === 0 ? "#0d1320" : "#0b1018");
+        if (sea) c = y < coastY(x) + 1.5 ? "#2a3a4f" : (y % 3 === 0 ? "#0d1320" : "#0b1018");
+        else if (ring === -1 && (x < 18 || x > MW - 19) && r() < 0.6) c = r() < 0.5 ? "#16201a" : "#1c2a21"; // forest on both flanks
         else if (ring === -1) c = r() < 0.04 ? "#1c2230" : ((x + y) % 2 ? "#12161e" : "#141922");
         else if (ring === 3) c = d > RADII[3] - 1.2 ? "#5b6476" : d > RADII[3] - 4 ? "#3d4555" : "#171c25";
         else if (ring === 2) {
@@ -105,17 +106,23 @@
         px(x, y, c);
       }
     }
-    // Invasion lanes: roads across the ash plains to the gates
-    lanes = [[0, 66], [30, 0], [16, MH - 1]].map(function (s) {
-      var pts = [], x = s[0], y = s[1], len = Math.hypot(MCX - x, MCY - y);
-      for (var k = 0; k <= len; k++) {
-        var f = k / len, lx = Math.round(x + (MCX - x) * f + Math.sin(k * 0.2) * 1.5), ly = Math.round(y + (MCY - y) * f);
-        if (ringAt[ly * MW + lx] !== -1) break;
-        pts.push([lx, ly]);
-        px(lx, ly, "#1f242e"); px(lx + 1, ly, "#1f242e");
+    // Invasion lanes from the north edge: the main road straight down to the North gate,
+    // and the flank track down the east side to the East gate.
+    lanes = [[[80, 0]], [[126, 0], [143, 26], [146, 70]]].map(function (way) {
+      var pts = [], path = way.concat([[MCX, MCY]]), done = false;
+      for (var s = 0; s < path.length - 1 && !done; s++) {
+        var ax = path[s][0], ay = path[s][1], bx = path[s + 1][0], by = path[s + 1][1], len = Math.hypot(bx - ax, by - ay);
+        for (var k = 0; k <= len; k++) {
+          var f = k / len;
+          var lx = Math.max(0, Math.min(MW - 2, Math.round(ax + (bx - ax) * f + Math.sin(pts.length * 0.2) * 1.2)));
+          var ly = Math.round(ay + (by - ay) * f);
+          if (ringAt[ly * MW + lx] !== -1) { done = true; break; }
+          pts.push([lx, ly]);
+          px(lx, ly, "#1f242e"); px(lx + 1, ly, "#1f242e");
+        }
       }
       var gate = pts[pts.length - 1];
-      g.fillStyle = "#2b1a12"; g.fillRect(gate[0] + 1, gate[1] - 1, 3, 3);
+      g.fillStyle = "#2b1a12"; g.fillRect(gate[0] - 1, gate[1], 3, 3);
       return pts;
     });
     // Towers along the wall
@@ -123,7 +130,7 @@
     for (var a = 0; a < 15; a++) {
       var ta = a / 15 * Math.PI * 2, R = (RADII[3] - 2.5) * ringShape(ta);
       var tx = Math.round(MCX + Math.cos(ta) * R) - 1, ty = Math.round(MCY + Math.sin(ta) * R) - 1;
-      if (tx + 3 >= coastX(ty)) continue;
+      if (ty + 3 >= coastY(tx)) continue;
       g.fillStyle = "#4a5262"; g.fillRect(tx, ty, 3, 3);
       g.fillStyle = "#5b6476"; g.fillRect(tx, ty, 3, 1);
       towers.push({ x: tx, y: ty });
@@ -244,11 +251,11 @@
   };
   var KILLS = [0, 1, 10, 25];
   var foes = [
-    ["Husk", "Swarm", "Slow and weak. Arrives in large groups.", "Flame Pit, Catapult"],
-    ["Runner", "Fast", "Sprints past slow towers.", "Frost Bell, Spearmen"],
-    ["Brute", "Tank", "Smashes walls and barricades.", "Ballista, Shieldbearers"],
+    ["Husk", "Swarm", "Slow and weak. Arrives in large groups.", "Flame Pit, Catapult", true],
+    ["Runner", "Fast", "Sprints past slow towers.", "Frost Bell, Spearmen", true],
+    ["Brute", "Tank", "Smashes walls and barricades.", "Ballista, Shieldbearers", true],
     ["Spitter", "Ranged", "Attacks towers from range.", "Archer Post, Bowmen"],
-    ["Gloomwing", "Flyer", "Ignores walls and ground traps.", "Archer Post, Arcane Spire"],
+    ["Gloomwing", "Flyer", "Ignores walls and ground traps.", "Archer Post, Arcane Spire", true],
     ["Burrower", "Tunneler", "Digs under walls, unseen until revealed.", "Watchtower"],
     ["Shrieker", "Support", "Speeds up and shields nearby monsters.", "Ballista, kill it first"],
     ["Mimic", "Trick", "Disguised as refugees at the gate.", "Vael, Watchtower, Curfew"],
@@ -279,7 +286,7 @@
   var cards = foes.map(function (f) {
     var el = document.createElement("article");
     el.className = "foe" + (f[1] === "Siege beast" ? " beast" : "");
-    el.innerHTML = '<div class="foe-top"><canvas class="sprite" width="12" height="12" aria-hidden="true"></canvas><div class="foe-id"><h3></h3><span class="type"></span></div></div>' +
+    el.innerHTML = '<div class="foe-top"><canvas class="sprite" width="12" height="12" aria-hidden="true"></canvas><div class="foe-id"><h3></h3><span class="type"></span><span class="state"></span></div></div>' +
       '<p class="desc"></p><p class="counter"><b>Counters</b><span></span></p>' +
       '<div class="hunt"><span class="pips" aria-hidden="true"><i></i><i></i><i></i></span><span class="kills"></span><button type="button" class="hunt-btn"></button></div>';
     roster.appendChild(el);
@@ -299,6 +306,9 @@
     name.classList.toggle("unk", s < 1); type.classList.toggle("unk", s < 2);
     desc.classList.toggle("unk", s < 1); ctr.classList.toggle("unk", s < 3);
     el.querySelectorAll(".pips i").forEach(function (p, k) { p.classList.toggle("on", k < s); });
+    var st = el.querySelector(".state");
+    st.textContent = f[4] ? "In the current build" : "Planned";
+    st.classList.toggle("planned", !f[4]);
     el.querySelector(".kills").textContent = KILLS[s] + (KILLS[s] === 1 ? " kill" : " kills");
     btn.textContent = s >= 3 ? "Studied" : "Hunt";
     btn.disabled = s >= 3;
@@ -360,27 +370,30 @@
 
   /* ---------- Cast ---------- */
   var cast = [
-    ["Rook Varrel", "The Warden · you", "Cold, practical, quietly guilty. Stays in the city.", "Overclock", "doubles one tower's fire rate.", "#ef7b31"],
-    ["Sera Quill", "Archer captain", "Loyal and sharp-tongued.", "Rain of Shafts", "an area arrow volley.", "#c9a45a"],
-    ["Bram Holt", "Blacksmith · tank", "Huge, gentle, slow to anger.", "Shieldwall", "blocks a lane or guards the party.", "#8c9db3"],
-    ["Isolde Fen", "Hedge witch · mage", "Curious and reckless.", "Frostfire", "freezes a group, then burns it.", "#93b6d8"],
-    ["Mother Ilse", "Priestess · support", "Warm and stubborn.", "Vigil", "heals heroes and lowers Dread.", "#e6d7a8"],
-    ["Habyr", "Lone dungeon-diver", "18, from the burned village of Sabali. Grim, quiet, driven by revenge.", "Hatred", "grows stronger as he fights.", "#b5432a"],
-    ["Tomas Reed", "Quartermaster", "Nervous, and brilliant with numbers.", "Ledger", "better trade and resource rates.", "#7fa37a"],
-    ["Vael", "Hollow-touched scout", "Silent, half-monster.", "Foresight", "reveals the invasion early. May betray you.", "#ebe5d8"],
-    ["Lord Cassian Mare", "Noble rival", "Charming and ambitious.", "Intrigue", "undermines morale and Decrees.", "#9a7bb5"],
-    ["The Unmade King", "Final antagonist", "Leads the last invasion out of the Maw.", "Invasion IV", "the final boss.", "#ebe5d8"]
+    ["Rook Varrel", "The Warden · you", "Cold, practical, quietly guilty. Stays in the city.", "Overclock", "doubles one tower's fire rate for 10 s.", "#ef7b31", true, ""],
+    ["Sera Quill", "Archer captain", "Loyal and sharp-tongued.", "Rain of Shafts", "arrows rain on an area for 2 s, hitting flyers too.", "#c9a45a", true, "In the city: +6 Food a day from hunting the cliffs."],
+    ["Bram Holt", "Blacksmith · tank", "Huge, gentle, slow to anger.", "Shieldwall", "holds his ground for 8 s, takes 70% less damage and pulls monsters onto himself.", "#8c9db3", true, "In the city: damaged towers and walls regain 25% health a day."],
+    ["Isolde Fen", "Hedge witch · mage", "Curious and reckless.", "Frostfire", "freezes a group, then burns it.", "#93b6d8", false, ""],
+    ["Mother Ilse", "Priestess · support", "Warm and stubborn.", "Vigil", "heals heroes and lowers Dread.", "#e6d7a8", false, ""],
+    ["Habyr", "Lone dungeon-diver", "18, from the burned village of Sabali. Grim, quiet, driven by revenge.", "Hatred", "grows stronger as he fights.", "#b5432a", false, ""],
+    ["Tomas Reed", "Quartermaster", "Nervous, and brilliant with numbers.", "", "Better trade and resource rates.", "#7fa37a", true, ""],
+    ["Vael", "Hollow-touched scout", "Silent, half-monster.", "", "Reveals the invasion early. May betray you.", "#ebe5d8", true, ""],
+    ["Lord Cassian Mare", "Noble rival", "Charming and ambitious.", "", "Undermines morale and Decrees.", "#9a7bb5", true, ""],
+    ["The Unmade King", "Final antagonist", "Leads the last invasion out of the Maw.", "Invasion IV", "the final boss.", "#ebe5d8", false, ""]
   ];
   var castEl = document.getElementById("cast-list");
   cast.forEach(function (h, i) {
     var el = document.createElement("article");
     el.className = "hero-card" + (i === cast.length - 1 ? " foe-card" : "");
-    el.innerHTML = '<canvas class="sigil" width="14" height="14" aria-hidden="true"></canvas><div><h3></h3><span class="role"></span><p class="who"></p><p class="ability"><b></b> <span></span></p></div>';
+    el.innerHTML = '<canvas class="sigil" width="14" height="14" aria-hidden="true"></canvas><div><h3></h3><span class="role"></span><p class="who"></p><p class="ability"><b></b> <span></span></p><p class="city"></p><span class="state"></span></div>';
     el.querySelector("h3").textContent = h[0];
     el.querySelector(".role").textContent = h[1];
     el.querySelector(".who").textContent = h[2];
     el.querySelector(".ability b").textContent = h[3];
     el.querySelector(".ability span").textContent = h[4];
+    el.querySelector(".city").textContent = h[7];
+    el.querySelector(".state").textContent = h[6] ? "In the current build" : "Planned";
+    el.querySelector(".state").classList.toggle("planned", !h[6]);
     drawSigil(el.querySelector("canvas"), h[0], h[5], i === cast.length - 1);
     castEl.appendChild(el);
   });
@@ -609,8 +622,8 @@
   var corr = document.getElementById("corridor-canvas"), cg = corr.getContext("2d");
   var bands = [
     { min: 75, name: "Bright", danger: "Normal enemies. Dread rises slowly.", reward: "Normal loot." },
-    { min: 25, name: "Dim", danger: "+25% Dread gain. Enemies hit harder.", reward: "+10% loot." },
-    { min: 0, name: "Dark", danger: "Ambushes. +50% Dread gain. Hollow Taint rises faster.", reward: "+25% loot, and better odds of Rare finds and intel." }
+    { min: 25, name: "Dim", danger: "+25% Dread gain. Enemies hit 10% harder.", reward: "+10% loot." },
+    { min: 0, name: "Dark", danger: "Ambushes: the enemy strikes first. +50% Dread gain, and enemies hit 20% harder.", reward: "+25% loot." }
   ];
 
   function drawCorridor(t) {

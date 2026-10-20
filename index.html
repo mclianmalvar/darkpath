@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;700&family=Spectral:ital,wght@0,400;0,600;1,400&family=Silkscreen&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400..700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/site.js" defer></script>
 <script src="assets/home.js" defer></script>
@@ -115,6 +115,7 @@
         <span><i class="scout"></i>Day 25: scout report</span>
         <span><i class="inv"></i>Invasion</span>
       </div>
+      <p class="build-note"><b>Current build</b>Act 1 runs a shorter 10-day countdown, with the scout report on Day 7.</p>
 
       <ol class="phases">
         <li><span class="n">1 &middot; Dawn</span><h3>Report</h3><p>Days left, hero status and expedition results. Every few days a city event is drawn.</p></li>
@@ -146,10 +147,11 @@
           <h3>On the walls</h3>
           <ul>
             <li><strong>RTS command with active pause.</strong> Select heroes, militia squads and the Warden, then right-click to move or attack.</li>
-            <li><strong>Nine towers, each with a final branch.</strong> Archer Post to Longbow Nest or Crossbow Hall, Ballista to Piercer or Harpoon.</li>
-            <li><strong>Crewed siege engines.</strong> Put a squad on a catapult, trebuchet or cannon, click a target area, and spend ammo you stockpiled.</li>
-            <li><strong>Fog, weather and time of day.</strong> Night halves sight, rain douses fire, wind pushes arrows off target.</li>
-            <li><strong>Evacuate districts.</strong> Citizens walk to Inner Keep shelters, and the Hollow hunt them on the roads.</li>
+            <li><strong>Towers that grow in three steps.</strong> Archer Post to Archer Tower to Longbow Nest, Ballista to Heavy Ballista to Piercer, Frost Bell to Rime Bell to Glacier.</li>
+            <li><strong>Tall walls.</strong> Build towers on top of the walls for extra range, and send units up the wall stairs to fight from the walkway.</li>
+            <li><strong>A crewed Catapult.</strong> Put a squad on it, click a target area, and spend the Stone Shot you stockpiled. Trebuchets and cannons come later.</li>
+            <li><strong>Time of day.</strong> The Hollow arrive at dawn, noon, dusk or night. At night, tower and archer range drops by 20%.</li>
+            <li><strong>Evacuate the Market Ring.</strong> Press B and its citizens walk to the Keep, with the Hollow hunting them on the roads.</li>
           </ul>
           <div class="keys"><kbd>Space</kbd><span>pause</span><kbd>Ctrl</kbd><kbd>1-9</kbd><span>groups</span><kbd>T</kbd><span>ammo</span><kbd>B</kbd><span>evacuate</span></div>
         </article>
@@ -160,7 +162,7 @@
             <li><strong>A party of four, in ranks.</strong> Each skill can only be used from certain ranks and hits certain enemy ranks.</li>
             <li><strong>Timed strikes and parries.</strong> Press Space as the marker crosses the zone for bonus damage or a perfect block.</li>
             <li><strong>Dread and Afflictions.</strong> Fear builds until a hero turns Panicked, Reckless or Hopeless.</li>
-            <li><strong>Hollow Taint.</strong> Corruption makes heroes stronger, until it turns them into the enemy.</li>
+            <li><strong>Levels and loot.</strong> Heroes level up and bring home weapons, chest armor and trinkets.</li>
             <li><strong>Auto-timing</strong> resolves strikes and parries for you at most of the bonus, on any difficulty.</li>
           </ul>
           <div class="keys"><kbd>1-4</kbd><span>skills</span><kbd>Space</kbd><span>strike / parry</span><kbd>M</kbd><span>map</span><kbd>R</kbd><span>retreat</span></div>
@@ -194,6 +196,7 @@
             <p class="ring-text">The Warden's seat and the city's last refuge.</p>
             <p class="ring-fall"><b>If it falls</b><span>Greywatch falls and the campaign ends.</span></p>
           </div>
+          <p class="build-note"><b>Current build</b>The Prologue and Act 1 are fought over the Inner Keep and the Market Ring, inside the city walls.</p>
         </div>
       </div>
     </div>
@@ -201,14 +204,15 @@
       <div>
         <div class="sub">
           <span class="label">Defenses</span>
-          <div class="chips"><span>Archer Post</span><span>Ballista</span><span>Flame Pit</span><span>Frost Bell</span><span>Arcane Spire</span><span>Spike Trap</span><span>Wall</span><span>Watchtower</span><span>Chapel</span></div>
+          <div class="chips"><span class="built">Archer Post</span><span class="built">Ballista</span><span class="built">Frost Bell</span><span class="built">Barricade and walls</span><span class="built">Wall stairs</span><span>Flame Pit</span><span>Arcane Spire</span><span>Spike Trap</span><span>Watchtower</span><span>Chapel</span></div>
+          <p class="chips-note">Lit: in the current build. The rest are planned.</p>
         </div>
         <div class="sub">
           <span class="label">Siege engines</span>
-          <div class="chips engines"><span>Catapult</span><span>Trebuchet</span><span>Cannon</span></div>
+          <div class="chips"><span class="built">Catapult</span><span>Trebuchet</span><span>Cannon</span></div>
         </div>
         <div class="sub">
-          <span class="label">Synergies</span>
+          <span class="label">Synergies &middot; planned</span>
           <ul class="synergy">
             <li><b>Shatter.</b> Frost Bell plus a Cannon or Catapult shot: frozen enemies take bonus damage.</li>
             <li><b>Fire line.</b> Any fire source ignites a whole Oil Trench.</li>
@@ -228,7 +232,7 @@
             <tr><td>Plunder the Depths</td><td>+50% dungeon loot</td><td class="cost">+20 Dread per expedition</td></tr>
           </tbody>
         </table>
-        <p class="torch-hint" style="margin-top:14px">Only one Decree can be active at a time. Rule by them too often and you will save the city as a Tyrant.</p>
+        <p class="torch-hint" style="margin-top:14px">Only one Decree can be active at a time. Rule by them too often and you will save the city as a Tyrant. Decrees are planned for the full game and are not in the current build.</p>
       </div>
     </div>
   </section>
@@ -255,10 +259,10 @@
       </div>
 
       <div class="regions">
-        <div class="region"><span class="act">Opens in Act 1</span><h3>Old Mines</h3><p>Hollow miners, Burrowers, outlaw deserters.</p><p class="boss"><b>Boss</b>The Foreman</p></div>
-        <div class="region"><span class="act">Opens in Act 2</span><h3>Drowned Crypts</h3><p>Risen dead, Mimics, drowned knights.</p><p class="boss"><b>Boss</b>The Tide Abbess</p></div>
-        <div class="region"><span class="act">Opens in Act 3</span><h3>Ashen Warrens</h3><p>Hollow beasts and Maw cultists.</p><p class="boss"><b>Boss</b>The Ash Matron</p></div>
-        <div class="region"><span class="act">Opens in Act 4</span><h3>Root of the Maw</h3><p>Elite Hollow, and Legendary Relics.</p><p class="boss"><b>Boss</b>The Heart of the Maw</p></div>
+        <div class="region"><span class="act">Act 1 &middot; built</span><h3>Old Mines</h3><p>Hollow miners, Burrowers, outlaw deserters.</p><p class="boss"><b>Final fight</b>The Hollow Overseer</p></div>
+        <div class="region"><span class="act">Act 2 &middot; planned</span><h3>Drowned Crypts</h3><p>Risen dead, Mimics, drowned knights.</p><p class="boss"><b>Boss</b>The Tide Abbess</p></div>
+        <div class="region"><span class="act">Act 3 &middot; planned</span><h3>Ashen Warrens</h3><p>Hollow beasts and Maw cultists.</p><p class="boss"><b>Boss</b>The Ash Matron</p></div>
+        <div class="region"><span class="act">Act 4 &middot; planned</span><h3>Root of the Maw</h3><p>Elite Hollow, and Legendary Relics.</p><p class="boss"><b>Boss</b>The Heart of the Maw</p></div>
       </div>
     </div>
   </section>
@@ -268,7 +272,7 @@
       <div class="section-head">
         <p class="eyebrow">The Hollow</p>
         <h2>Pale ash and bone, glowing at the cracks.</h2>
-        <p class="lede">Every invasion is stronger than the last, and the Hollow adapt to the defenses you lean on. In the game, every kill fills in a monster's Bestiary page. Here too: hunt a monster to learn what it is, then its type, then how to beat it.</p>
+        <p class="lede">Every invasion is stronger than the last, and the Hollow adapt to the defenses you lean on. The full game will fill in a Bestiary page as you kill each kind of monster. Try it here: hunt a monster to learn what it is, then its type, then how to beat it.</p>
       </div>
       <div class="bestiary-bar">
         <div class="bestiary-progress">
@@ -283,10 +287,10 @@
       </div>
       <div class="roster" id="roster"></div>
       <div class="bosses">
-        <article class="boss-card"><span class="inv">Invasion I</span><h3>Gravemaw</h3><p>A giant wall-breaker. Walls take triple damage.</p></article>
-        <article class="boss-card"><span class="inv">Invasion II</span><h3>Mother of Swarms</h3><p>Spawns Husks constantly until she is killed.</p></article>
-        <article class="boss-card"><span class="inv">Invasion III</span><h3>The Pale Twins</h3><p>Two bosses on separate lanes. Kill one first and the other enrages.</p></article>
-        <article class="boss-card"><span class="inv">Invasion IV</span><h3>The Unmade King</h3><p>A multi-phase final battle, weaker if your heroes destroyed the Heart of the Maw.</p></article>
+        <article class="boss-card"><span class="inv">Invasion I &middot; built</span><h3>Gravemaw</h3><p>A giant wall-breaker. Walls take triple damage.</p></article>
+        <article class="boss-card"><span class="inv">Invasion II &middot; planned</span><h3>Mother of Swarms</h3><p>Spawns Husks constantly until she is killed.</p></article>
+        <article class="boss-card"><span class="inv">Invasion III &middot; planned</span><h3>The Pale Twins</h3><p>Two bosses on separate lanes. Kill one first and the other enrages.</p></article>
+        <article class="boss-card"><span class="inv">Invasion IV &middot; planned</span><h3>The Unmade King</h3><p>A multi-phase final battle, weaker if your heroes destroyed the Heart of the Maw.</p></article>
       </div>
     </div>
   </section>
@@ -301,15 +305,15 @@
           <p>The king and his generals are dead. Command falls to Rook Varrel, the one man who still knows how the walls work. The tone is dark and grim, with warmth from the people around him: a story about survival, sacrifice and what power does to a person.</p>
         </div>
         <ol class="acts">
-          <li><span class="roman">I</span><div><span class="days">Prologue + 30 days</span><h3>Survive</h3><p>Hold the surprise siege, open the Old Mines, meet the cast and find Habyr. Ends with Gravemaw.</p></div></li>
-          <li><span class="roman">II</span><div><span class="days">30 days</span><h3>Reclaim</h3><p>Retake the Farm Ring and explore the Drowned Crypts while Lord Cassian plots against the Warden.</p></div></li>
-          <li><span class="roman">III</span><div><span class="days">25 days</span><h3>The Truth</h3><p>In the Ashen Warrens, learn who opened the Maw, and what the Hollow once were.</p></div></li>
-          <li><span class="roman">IV</span><div><span class="days">20 days</span><h3>Close the Maw</h3><p>Send heroes into the Root of the Maw to weaken the Unmade King before he leads the last invasion.</p></div></li>
+          <li><span class="roman">I</span><div><span class="days">Prologue + 30 days &middot; built as a 10-day version</span><h3>Survive</h3><p>Hold the surprise siege, open the Old Mines, meet the cast and find Habyr. Ends with Gravemaw.</p></div></li>
+          <li><span class="roman">II</span><div><span class="days">30 days &middot; planned</span><h3>Reclaim</h3><p>Retake the Farm Ring and explore the Drowned Crypts while Lord Cassian plots against the Warden.</p></div></li>
+          <li><span class="roman">III</span><div><span class="days">25 days &middot; planned</span><h3>The Truth</h3><p>In the Ashen Warrens, learn who opened the Maw, and what the Hollow once were.</p></div></li>
+          <li><span class="roman">IV</span><div><span class="days">20 days &middot; planned</span><h3>Close the Maw</h3><p>Send heroes into the Root of the Maw to weaken the Unmade King before he leads the last invasion.</p></div></li>
         </ol>
       </div>
       <div class="endings">
-        <div class="ending tyrant"><span class="label">Ending</span><h3>Tyrant</h3><p>The city survives, feared and in chains. Earned through heavy use of harsh Decrees.</p></div>
-        <div class="ending guardian"><span class="label">Ending</span><h3>Guardian</h3><p>The city survives free, at a higher cost in lives.</p></div>
+        <div class="ending tyrant"><span class="label">Ending &middot; planned</span><h3>Tyrant</h3><p>The city survives, feared and in chains. Earned through heavy use of harsh Decrees.</p></div>
+        <div class="ending guardian"><span class="label">Ending &middot; planned</span><h3>Guardian</h3><p>The city survives free, at a higher cost in lives.</p></div>
       </div>
     </div>
   </section>
@@ -334,13 +338,13 @@
         </div>
         <ul class="rules">
           <li><b>Autosave only, on every difficulty.</b><span>One save per campaign, written at each Dawn. No reloads.</span></li>
-          <li><b>Fallen heroes can still be saved, briefly.</b><span>In an invasion, an ally or Repair Crew has about 15 seconds to reach them.</span></li>
-          <li><b>The fallen leave something behind.</b><span>Names are carved into the Chapel walls. Recruits raise morale for good; story heroes leave a unique legacy.</span></li>
+          <li><b>Fallen heroes can still be saved, briefly.</b><span>In an invasion, any ally has 15 seconds to reach a downed hero.</span></li>
+          <li><b>Every name is kept.</b><span>The fallen are carved into the Memorial Wall. In the full game, each one will also leave a small lasting bonus.</span></li>
           <li><b>If the Warden falls, Greywatch falls.</b><span>The game warns you at 30% health and offers a one-click retreat to the Keep.</span></li>
         </ul>
       </div>
       <div>
-        <p class="bonds-title">Hero bonds</p>
+        <p class="bonds-title">Hero bonds &middot; planned</p>
         <div class="bonds">
           <div class="bond"><span class="lvl">Acquainted<small>2 together</small></span><p>+5% damage when side by side.</p><span class="meter" aria-hidden="true"><i style="width:20%"></i></span></div>
           <div class="bond"><span class="lvl">Trusted<small>5 together</small></span><p>+10% damage, and Dread rises more slowly for both.</p><span class="meter" aria-hidden="true"><i style="width:50%"></i></span></div>
@@ -356,21 +360,50 @@
       <div class="section-head">
         <p class="eyebrow">Development</p>
         <h2>A solo project, built at a hobby pace.</h2>
-        <p class="lede">The design document reached v1.0 and was frozen on October 19, 2026. Each milestone below starts when the last one's goal is met.</p>
+        <p class="lede">The design reached v1.0 on October 19, 2026. Act 1 now runs as a browser MVP, and the Godot 4.3 version is underway.</p>
       </div>
       <ol class="road">
         <li class="done"><span class="n"><span>Design</span><span class="state">Done</span></span><h3>Design document v1.0</h3><p>Every feature tagged Core or Later. Design frozen.</p></li>
-        <li><span class="n"><span>Milestone 1</span><span class="state">Next</span></span><h3>Defense prototype</h3><p>A tower kills monsters walking a path.</p></li>
-        <li><span class="n"><span>Milestone 2</span><span class="state">Planned</span></span><h3>Dungeon prototype</h3><p>One fight with timed strikes and parries that is fun with placeholder art.</p></li>
-        <li><span class="n"><span>Milestone 3</span><span class="state">Planned</span></span><h3>Core loop</h3><p>A full countdown and invasion cycle is playable.</p></li>
-        <li><span class="n"><span>Milestone 4</span><span class="state">Planned</span></span><h3>MVP</h3><p>Friends can play one full cycle and give feedback.</p></li>
+        <li class="done"><span class="n"><span>Milestone 1</span><span class="state">Built</span></span><h3>Defense prototype</h3><p>A tower kills monsters walking a path.</p></li>
+        <li class="done"><span class="n"><span>Milestone 2</span><span class="state">Built</span></span><h3>Dungeon prototype</h3><p>One fight with timed strikes and parries that is fun with placeholder art.</p></li>
+        <li class="done"><span class="n"><span>Milestone 3</span><span class="state">Built</span></span><h3>Core loop</h3><p>A full countdown and invasion cycle is playable.</p></li>
+        <li class="now"><span class="n"><span>Milestone 4</span><span class="state">In progress</span></span><h3>MVP</h3><p>Built in the browser. Now moving to Godot 4.3, then to friends for feedback.</p></li>
         <li><span class="n"><span>Milestone 5</span><span class="state">Planned</span></span><h3>Vertical slice</h3><p>Act 1 looks and sounds like the final game.</p></li>
         <li><span class="n"><span>Milestone 6</span><span class="state">Planned</span></span><h3>Content</h3><p>The campaign is playable from start to finish.</p></li>
         <li><span class="n"><span>Milestone 7</span><span class="state">Planned</span></span><h3>Polish and release</h3><p>Balance, bug fixing, and launch.</p></li>
         <li><span class="n"><span>Milestone 8</span><span class="state">Planned</span></span><h3>Endless mode</h3><p>A free post-launch update, ranked by days survived.</p></li>
       </ol>
+      <div class="scope">
+        <div class="scope-col built">
+          <p class="side-label">Built so far</p>
+          <ul class="ticks">
+            <li>The Prologue siege, with both outcomes</li>
+            <li>A 10-day countdown with Dawn reports, 7 city events and the scout report</li>
+            <li>The city: 5 buildings, workers, food, morale and festivals</li>
+            <li>4 defenses with 3 upgrade steps each, wall stairs and towers on the walls</li>
+            <li>The Catapult with Stone Shot, and Spearmen squads</li>
+            <li>The Old Mines: six-room expeditions, torchlight, Dread, timed strikes and parries</li>
+            <li>Rook Varrel, Sera and Bram, with Overclock, Rain of Shafts and Shieldwall</li>
+            <li>Invasion I against Gravemaw, with evacuation and downed-hero rescue</li>
+            <li>Permanent death, the Memorial Wall and one-slot autosave</li>
+          </ul>
+        </div>
+        <div class="scope-col">
+          <p class="side-label">Planned</p>
+          <ul class="ticks planned">
+            <li>The full countdowns of Acts 1 to 4: 30, 30, 25 and 20 days</li>
+            <li>Invasions II to IV and their bosses</li>
+            <li>The Drowned Crypts, the Ashen Warrens and the Root of the Maw</li>
+            <li>Isolde, Mother Ilse, Habyr and random recruits</li>
+            <li>Decrees, and the Tyrant and Guardian endings</li>
+            <li>More defenses, the Trebuchet and the Cannon</li>
+            <li>More Hollow in invasions, siege beasts, weather, Omens and shelters</li>
+            <li>Hero bonds, Hollow Taint and the Bestiary</li>
+          </ul>
+        </div>
+      </div>
       <dl class="specs">
-        <div><dt>Engine</dt><dd>Godot 4</dd></div>
+        <div><dt>Engine</dt><dd>Godot 4.3</dd></div>
         <div><dt>Platform</dt><dd>PC (Windows)</dd></div>
         <div><dt>Art</dt><dd>16&times;16 pixel art</dd></div>
         <div><dt>Release plan</dt><dd>To be decided</dd></div>

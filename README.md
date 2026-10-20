@@ -37,7 +37,7 @@ To send the home page's Follow button to an itch.io page or a Discord server ins
 
 ## Status
 
-The game design document reached v1.0 on October 19, 2026. Next up is Milestone 1, the defense prototype.
+The game design document reached v1.0 on October 19, 2026. Act 1 (the Prologue, a 10-day countdown, the Old Mines and Invasion I) is built as a browser MVP, and the Godot 4.3 version is in progress.
 
 ---
 
