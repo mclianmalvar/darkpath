@@ -12,14 +12,28 @@ A tear in the sky called the Maw has released the Hollow, monsters of ash and bo
 
 ## This repository
 
-This repository hosts the game's website, served with GitHub Pages.
+This repository holds the game's official website, served with GitHub Pages from the `main` branch.
 
-| File | What it is |
+| Path | What it is |
 |------|------------|
-| `index.html` | The whole site: one page with its styles, scripts and pixel art drawn in code |
-| `og.png` | The preview image shown when the link is shared |
+| `index.html` | Home page: the countdown, city map, torch meter, Bestiary, cast and roadmap |
+| `devlog.html` | Devlog: development news, newest first |
+| `presskit.html` | Press kit: fact sheet, descriptions, features, credits and downloadable art |
+| `faq.html` | Frequently asked questions |
+| `404.html` | The page shown for a missing address |
+| `assets/site.css` | Styles shared by every page |
+| `assets/site.js` | Behavior shared by every page: sound, menus, motion |
+| `assets/home.js` | The home page's pixel scenes and interactive pieces |
+| `presskit/` | Logos, icon, key art, social card and a zip of all of them |
+| `og.png` | The preview image shown when a link to the site is shared |
 
-To send the site's "Follow" button somewhere other than this repository, such as an itch.io page or a Discord server, set `FOLLOW_URL` near the bottom of `index.html`.
+### Adding a devlog post
+
+Open `devlog.html`, copy one `<article class="post">` block, paste it at the top of the list, and change its `id`, date, tags, title and text.
+
+### Changing the Follow button
+
+To send the home page's Follow button to an itch.io page or a Discord server instead of this repository, set `FOLLOW_URL` near the bottom of `assets/site.js`.
 
 ## Status
 
