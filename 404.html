@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found | Dark Path</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/darkpath/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Spectral:wght@400;600&family=Silkscreen&display=swap">
+<style>
+/* Self-contained so it works at any missing address. Links are absolute to the /darkpath/ site. */
+:root {
+  color-scheme: dark;
+  --abyss: #080a0f; --stone: #161c26; --mortar: #2a3240; --ash: #ebe5d8; --fog: #9ba3b1; --ember: #ef7b31; --ember-deep: #9c4519;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; display: grid; place-items: center; text-align: center; background: var(--abyss); color: var(--ash);
+  font-family: "Spectral", Georgia, serif; font-size: 1.0625rem; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background-image: radial-gradient(60% 50% at 50% 35%, rgba(239,123,49,.12), transparent 70%);
+}
+main { display: grid; justify-items: center; gap: 18px; padding-block: 48px; max-width: 560px; }
+canvas { width: 120px; height: 120px; image-rendering: pixelated; image-rendering: crisp-edges; }
+.code { font-family: "Silkscreen", monospace; font-size: .8rem; letter-spacing: .14em; color: var(--ember); margin: 0; }
+h1 { margin: 0; font-family: "Grenze Gotisch", Georgia, serif; font-size: clamp(2.6rem, 9vw, 4rem); line-height: .95; text-wrap: balance; }
+p { margin: 0; color: var(--fog); }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+a.btn {
+  font-family: "Silkscreen", monospace; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
+  padding: 12px 18px; border: 2px solid var(--ember); color: var(--abyss); background: var(--ember); box-shadow: 4px 4px 0 var(--ember-deep);
+}
+a.btn.ghost { background: transparent; color: var(--ash); border-color: var(--mortar); box-shadow: none; }
+a.btn:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main>
+  <canvas id="husk" width="12" height="12" aria-hidden="true"></canvas>
+  <p class="code">404 &middot; Page not found</p>
+  <h1>The Hollow took this page.</h1>
+  <p>It may have moved, or it never existed. Greywatch still stands.</p>
+  <div class="actions">
+    <a class="btn" href="/darkpath/">Back to Greywatch</a>
+    <a class="btn ghost" href="/darkpath/devlog.html">Read the devlog</a>
+  </div>
+</main>
+<script>
+// A Husk, the most common Hollow, with its glowing cracks.
+(function () {
+  var rows = ["....####....", "...######...", "...#+##+#...", "....####....", "...######...", "..##+####...", "..#.####.#..", "....#++#....", "....####....", "....#..#....", "...##..##...", "............"];
+  var g = document.getElementById("husk").getContext("2d");
+  rows.forEach(function (row, y) {
+    for (var x = 0; x < 12; x++) {
+      if (row[x] === ".") continue;
+      g.fillStyle = row[x] === "+" ? "#ef7b31" : y > 8 ? "#b8b0a2" : "#e2dccf";
+      g.fillRect(x, y, 1, 1);
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Devlog | Dark Path</title>
+<meta name="description" content="Development news and progress reports for Dark Path, a dark-fantasy tower defense and dungeon crawler.">
+<link rel="canonical" href="https://mclianmalvar.github.io/darkpath/devlog.html">
+<meta name="theme-color" content="#080a0f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dark Path">
+<meta property="og:title" content="Devlog | Dark Path">
+<meta property="og:description" content="Development news and progress reports for Dark Path, a dark-fantasy tower defense and dungeon crawler.">
+<meta property="og:url" content="https://mclianmalvar.github.io/darkpath/devlog.html">
+<meta property="og:image" content="https://mclianmalvar.github.io/darkpath/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dark Path: the walled city of Greywatch on a sea cliff, under a glowing tear in the night sky.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;700&family=Spectral:ital,wght@0,400;0,600;1,400&family=Silkscreen&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="index.html"><svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" shape-rendering="crispEdges"><rect width="16" height="16" fill="#080a0f"/><path fill="#ef7b31" d="M7 1h2v2h1v3h1v4h-1v3H9v2H7v-2H6v-3H5V6h1V3h1z"/><path fill="#f7efe0" d="M8 3h1v3h1v4H9v3H8v-3H7V6h1z"/></svg>Dark Path</a>
+    <nav aria-label="Site">
+      <a href="index.html">The game</a>
+      <a href="devlog.html" aria-current="page">Devlog</a>
+      <a href="presskit.html">Press kit</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <div class="bar-actions">
+      <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Sound">
+        <svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" shape-rendering="crispEdges" fill="currentColor"><rect x="0" y="5" width="3" height="4"/><rect x="3" y="4" width="2" height="6"/><rect x="5" y="2" width="2" height="10"/><rect x="7" y="0" width="2" height="14"/></svg>
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="sound-label">Sound off</span>
+      </button>
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+  <span class="fuse" aria-hidden="true"></span>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <nav aria-label="All pages">
+    <span class="menu-label">Pages</span>
+    <a href="index.html" style="--i:0"><span>The game</span><small>Defend the last city</small></a>
+    <a href="devlog.html" aria-current="page" style="--i:1"><span>Devlog</span><small>News from Greywatch</small></a>
+    <a href="presskit.html" style="--i:2"><span>Press kit</span><small>Facts, logos and art</small></a>
+    <a href="faq.html" style="--i:3"><span>FAQ</span><small>Common questions</small></a>
+  </nav>
+</div>
+
+<main id="top">
+  <section class="page-hero" aria-label="Devlog">
+    <div class="wrap">
+      <p class="eyebrow">Devlog</p>
+      <h1>News from Greywatch</h1>
+      <p class="lede">Progress reports on Dark Path, posted as each milestone lands.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap devlog">
+      <div class="posts">
+        <!-- To add a post: copy one <article class="post"> block, paste it at the top of this list,
+             and change its id, date, tags, title and text. Newest posts go first. -->
+
+        <article class="post" id="website-launch">
+          <div class="post-meta">
+            <time datetime="2026-10-20">Oct 20, 2026</time>
+            <div class="post-tags"><span>Website</span></div>
+          </div>
+          <div class="post-body">
+            <h2>The website is live</h2>
+            <p>Dark Path now has a home on the web. There is nothing to play yet, so the site does the next best thing and lets you try out the game's ideas.</p>
+            <ul>
+              <li><strong>The countdown.</strong> Hover over any of the 30 days to see what it holds.</li>
+              <li><strong>Greywatch.</strong> Click the four rings of the city map to see what each one guards, and what you lose if it falls.</li>
+              <li><strong>The torch meter.</strong> Drag the torch down and watch the dungeon get darker and more dangerous.</li>
+              <li><strong>The Bestiary.</strong> Hunt the Hollow to learn their names, types and counters.</li>
+            </ul>
+            <p>Turn on the sound in the top bar to hear strings in the city, a choir in the dungeons and war drums near the Hollow.</p>
+            <p class="post-next"><strong>Next up:</strong> Milestone 1, the defense prototype. A grid, pathfinding, and one tower killing monsters as they walk a path.</p>
+          </div>
+        </article>
+
+        <article class="post" id="design-v1">
+          <div class="post-meta">
+            <time datetime="2026-10-19">Oct 19, 2026</time>
+            <div class="post-tags"><span>Design</span></div>
+          </div>
+          <div class="post-body">
+            <h2>The design is frozen at v1.0</h2>
+            <p>The game design document for Dark Path reached version 1.0. It describes the whole game, from the surprise siege on Day 1 to the last invasion, and it is now frozen: new ideas go to a backlog until the full game ships.</p>
+            <p>Getting there took twenty revisions. Some of the bigger decisions along the way:</p>
+            <ul>
+              <li><strong>A new name.</strong> The game became Dark Path, and the last city was renamed from Ashwall to Greywatch.</li>
+              <li><strong>Death is permanent on every difficulty.</strong> It started as a rule for the hardest mode only.</li>
+              <li><strong>Autosave only.</strong> One save per campaign and no reloads, so every death counts.</li>
+              <li><strong>A surprise siege on Day 1.</strong> The Prologue throws you into a fight before you have built anything, and losing it does not end the game.</li>
+              <li><strong>Survival is the only reward.</strong> Nothing carries over between campaigns. Your score is the number of citizens still alive.</li>
+              <li><strong>Shelters, evacuation and siege beasts.</strong> The last additions before the freeze.</li>
+            </ul>
+            <p>Every feature is now tagged <strong>Core</strong>, meaning it ships in the full game, or <strong>Later</strong>, meaning it comes after launch or is cut if time runs out. The count stands at 19 Core and 15 Later.</p>
+            <p class="post-next"><strong>Next up:</strong> building it.</p>
+          </div>
+        </article>
+      </div>
+
+      <aside class="devlog-aside" aria-label="Where things stand">
+        <p class="side-label">Where things stand</p>
+        <ol class="status">
+          <li class="done"><b>Design document v1.0</b><span>Done &middot; Oct 19, 2026</span></li>
+          <li class="next"><b>Milestone 1: Defense prototype</b><span>Next</span></li>
+          <li><b>Milestone 2: Dungeon prototype</b><span>Planned</span></li>
+          <li><b>Milestone 3: Core loop</b><span>Planned</span></li>
+        </ol>
+        <a class="text-link" href="index.html#roadmap">See the full roadmap</a>
+        <a class="btn ghost" href="https://github.com/mclianmalvar/darkpath" target="_blank" rel="noopener">Follow on GitHub</a>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<a class="to-top" id="to-top" href="#top" aria-label="Back to top">
+  <svg viewBox="0 0 12 12" width="14" height="14" aria-hidden="true" shape-rendering="crispEdges" fill="currentColor"><rect x="5" y="1" width="2" height="10"/><rect x="3" y="3" width="2" height="2"/><rect x="7" y="3" width="2" height="2"/><rect x="1" y="5" width="2" height="2"/><rect x="9" y="5" width="2" height="2"/></svg>
+</a>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="mark" href="index.html"><svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" shape-rendering="crispEdges"><rect width="16" height="16" fill="#080a0f"/><path fill="#ef7b31" d="M7 1h2v2h1v3h1v4h-1v3H9v2H7v-2H6v-3H5V6h1V3h1z"/><path fill="#f7efe0" d="M8 3h1v3h1v4H9v3H8v-3H7V6h1z"/></svg>Dark Path</a>
+      <p>Defend the last city. A 2D dark-fantasy tower defense, city builder and dungeon crawler for PC, in development.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <div><span class="label">The game</span><a href="index.html#cycle">How it plays</a><a href="index.html#hollow">The Hollow</a><a href="index.html#cast">Cast</a><a href="index.html#roadmap">Roadmap</a></div>
+      <div><span class="label">News and media</span><a href="devlog.html">Devlog</a><a href="presskit.html">Press kit</a><a href="faq.html">FAQ</a></div>
+      <div><span class="label">Follow</span><a href="https://github.com/mclianmalvar/darkpath" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/mclianmalvar/darkpath/issues" target="_blank" rel="noopener">Ask a question</a></div>
+    </nav>
+  </div>
+  <div class="wrap footer-legal">
+    <span>&copy; 2026 Mc Lian M. Malvar. All characters, setting and story are original.</span>
+    <span>No cookies or trackers. Fonts load from Google Fonts. Bestiary progress stays in your browser.</span>
+  </div>
+</footer>
+</body>
+</html>
