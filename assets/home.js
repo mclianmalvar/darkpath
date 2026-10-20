@@ -63,7 +63,7 @@
       fall: "Citizens left in a breached district are killed. Evacuate them to the Keep's shelters before the walls give." },
     { name: "Outer Wall", pos: "Ring 4 · the first line",
       text: "The North gate faces the main road, a branch of it leads to the North-west gate, and the East gate faces the flank track. The North wall is two tiles thick, so units walk along it and pass each other. Towers built on top of the walls get +1 range, and units reach the walkway only by the wall stairs.",
-      fall: "Brutes and Gravemaw smash walls and gates. A tower on a wall falls with it, and every destroyed section becomes a ruin you must clear and rebuild." }
+      fall: "Brutes and Gravemaw smash walls and gates, and every blow shakes the defenders standing on them. A tower on a wall falls with it, defenders on a breaking wall fall to the ground, and every destroyed section becomes a ruin you must clear and rebuild." }
   ];
   var mapCv = document.getElementById("city-map"), mg = mapCv.getContext("2d"), mapTip = document.getElementById("map-tip");
   var ringInfo = document.getElementById("ring-info"), ringTabs = Array.prototype.slice.call(document.querySelectorAll(".ring-tab"));
@@ -262,9 +262,9 @@
   var foes = [
     ["Husk", "Swarm", "Slow and weak. Arrives in large groups.", "Flame Pit, Catapult", true],
     ["Runner", "Fast", "Sprints past slow towers.", "Frost Bell, Spearmen", true],
-    ["Brute", "Tank", "Smashes walls and barricades.", "Ballista, Shieldbearers", true],
+    ["Brute", "Tank", "Smashes walls and barricades. Its blows shake the defenders on the wall.", "Ballista, Shieldbearers", true],
     ["Spitter", "Ranged", "Attacks towers from range.", "Archer Post, Bowmen"],
-    ["Gloomwing", "Flyer", "Ignores walls and ground traps.", "Archer Post, Arcane Spire", true],
+    ["Gloomwing", "Flyer", "Flies over walls and hunts the defenders standing on them.", "Archer Post, Arcane Spire", true],
     ["Burrower", "Tunneler", "Digs under walls, unseen until revealed.", "Watchtower"],
     ["Shrieker", "Support", "Speeds up and shields nearby monsters.", "Ballista, kill it first"],
     ["Mimic", "Trick", "Disguised as refugees at the gate.", "Vael, Watchtower, Curfew"],
