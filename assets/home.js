@@ -267,7 +267,7 @@
     ["Gloomwing", "Flyer", "Flies over walls and hunts the defenders standing on them.", "Archer Post, Arcane Spire", true],
     ["Burrower", "Tunneler", "Digs under walls, unseen until revealed.", "Watchtower"],
     ["Shrieker", "Support", "Speeds up and shields nearby monsters.", "Ballista, kill it first"],
-    ["Mimic", "Trick", "Disguised as refugees at the gate.", "Vael, Watchtower, Curfew"],
+    ["Mimic", "Trick", "Hides among refugees you take in, and turns on the Market Ring from inside the walls.", "Vael, Spearmen", true],
     ["Climber", "Siege beast", "Scales walls directly, ignoring gates.", "Bowmen and Spearmen on the walls"],
     ["Ram", "Siege beast", "Heavily armored. Triple damage to gates.", "Ballista, Cannon, Oil Trench"],
     ["Bile Mortar", "Siege beast", "Lobs bile at towers from outside their range.", "Trebuchet, Catapult, a hero sortie"]

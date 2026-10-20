@@ -118,7 +118,7 @@
       <p class="build-note"><b>Current build</b>Act 1 runs a shorter 10-day countdown, with the scout report on Day 7.</p>
 
       <ol class="phases">
-        <li><span class="n">1 &middot; Dawn</span><h3>Report</h3><p>Days left, hero status and expedition results. Every few days a city event is drawn.</p></li>
+        <li><span class="n">1 &middot; Dawn</span><h3>Report</h3><p>Days left, hero status and expedition results, and what Tomas foresees for the invasion. Every few days a city event is drawn, like refugees at the gate.</p></li>
         <li><span class="n">2 &middot; Day</span><h3>City and dungeon</h3><p>Build, research, pass Decrees, and send a hero party on a 1 to 3 day expedition. Every upgrade and repair costs days off the countdown.</p></li>
         <li><span class="n">3 &middot; Evening</span><h3>Recover</h3><p>Heal wounds, lower Dread and equip new loot. Then the next day begins.</p></li>
         <li class="hot"><span class="n">4 &middot; Countdown ends</span><h3>Invasion</h3><p>Three waves and a boss in real time. You command towers, heroes and militia.</p></li>
@@ -150,12 +150,16 @@
             <li><strong>Formations.</strong> Hold the right mouse button and drag a line, as in Total War. A long line spreads your troops wide, a short one stacks them in ranks, and it works along the top of a wall too.</li>
             <li><strong>Towers that grow in three steps.</strong> Archer Post to Archer Tower to Longbow Nest, Ballista to Heavy Ballista to Piercer, Frost Bell to Rime Bell to Glacier.</li>
             <li><strong>Tall walls.</strong> Build towers on top of the walls for extra range, and send units up the wall stairs to fight from the walkway. The North wall is two tiles thick, so units can walk along it, pass each other and cross over the gates. The walls are not a safe place to stand, though: Gloomwings hunt the defenders on them, a Brute pounding the wall shakes them, and if the wall breaks they fall.</li>
+            <li><strong>Battle honors and veterans.</strong> After every battle the report names its MVP. Squads that survive become Blooded, then Veteran, and fight harder for it.</li>
+            <li><strong>Bait Carts.</strong> A cart of blood and offal draws nearby Hollow to it before anything else. Build one where your towers can reach them.</li>
+            <li><strong>Vael's Whisper.</strong> Once per invasion, Vael turns one of the Hollow against its own kind for twenty seconds.</li>
+            <li><strong>A last stand.</strong> A downed hero can spend their last seconds on their feet, unbreakable, and their example steels everyone else for the rest of the battle.</li>
             <li><strong>Post them before the horn.</strong> During the countdown your troops stand in the city and take the same orders. Wherever they stand when the last day ends is where the battle begins.</li>
             <li><strong>A crewed Catapult.</strong> Put a squad on it, click a target area, and spend the Stone Shot you stockpiled. Trebuchets and cannons come later.</li>
             <li><strong>Time of day.</strong> The Hollow arrive at dawn, noon, dusk or night. At night, tower and archer range drops by 20%.</li>
             <li><strong>Evacuate the Market Ring.</strong> Press B and its citizens walk to the Keep, with the Hollow hunting them on the roads.</li>
           </ul>
-          <div class="keys"><span class="k"><kbd>Space</kbd><span>pause</span></span><span class="k"><kbd>Ctrl</kbd><kbd>1-9</kbd><span>groups</span></span><span class="k"><kbd>T</kbd><span>ammo</span></span><span class="k"><kbd>B</kbd><span>evacuate</span></span><span class="k"><kbd>Shift</kbd><kbd>Right-click</kbd><span>queue</span></span><span class="k"><kbd>Right-drag</kbd><span>formation</span></span><span class="k"><kbd>Middle-drag</kbd><span>camera</span></span></div>
+          <div class="keys"><span class="k"><kbd>Space</kbd><span>pause</span></span><span class="k"><kbd>Ctrl</kbd><kbd>1-9</kbd><span>groups</span></span><span class="k"><kbd>T</kbd><span>ammo</span></span><span class="k"><kbd>B</kbd><span>evacuate</span></span><span class="k"><kbd>Shift</kbd><kbd>Right-click</kbd><span>queue</span></span><span class="k"><kbd>Right-drag</kbd><span>formation</span></span><span class="k"><kbd>V</kbd><span>Vael's Whisper</span></span><span class="k"><kbd>L</kbd><span>last stand</span></span><span class="k"><kbd>Middle-drag</kbd><span>camera</span></span></div>
         </article>
         <article class="front dungeon">
           <span class="mode">Expeditions &middot; turn based</span>
@@ -166,6 +170,7 @@
             <li><strong>Dread and Afflictions.</strong> Fear builds until a hero turns Panicked, Reckless or Hopeless.</li>
             <li><strong>Levels and loot.</strong> Heroes level up and bring home weapons, chest armor and trinkets.</li>
             <li><strong>Auto-timing</strong> resolves strikes and parries for you at most of the bonus, on any difficulty.</li>
+            <li><strong>Relics from the Root.</strong> The last gallery of the Old Mines holds pieces of the Watch Horn. Each piece strengthens the Warden, and the whole horn turns Overclock into a Rallying Horn.</li>
           </ul>
           <div class="keys"><span class="k"><kbd>1-4</kbd><span>skills</span></span><span class="k"><kbd>Space</kbd><span>strike / parry</span></span><span class="k"><kbd>M</kbd><span>map</span></span><span class="k"><kbd>R</kbd><span>retreat</span></span></div>
         </article>
@@ -206,7 +211,7 @@
       <div>
         <div class="sub">
           <span class="label">Defenses</span>
-          <div class="chips"><span class="built">Archer Post</span><span class="built">Ballista</span><span class="built">Frost Bell</span><span class="built">Barricade and walls</span><span class="built">Wall stairs</span><span>Flame Pit</span><span>Arcane Spire</span><span>Spike Trap</span><span>Watchtower</span><span>Chapel</span></div>
+          <div class="chips"><span class="built">Archer Post</span><span class="built">Ballista</span><span class="built">Frost Bell</span><span class="built">Barricade and walls</span><span class="built">Wall stairs</span><span class="built">Bait Cart</span><span>Flame Pit</span><span>Arcane Spire</span><span>Spike Trap</span><span>Watchtower</span><span>Chapel</span></div>
           <p class="chips-note">Lit: in the current build. The rest are planned.</p>
         </div>
         <div class="sub">
@@ -294,7 +299,7 @@
       </div>
       <div class="roster" id="roster"></div>
       <div class="bosses">
-        <article class="boss-card"><span class="inv">Invasion I &middot; built</span><h3>Gravemaw</h3><p>A giant wall-breaker. Walls take triple damage.</p></article>
+        <article class="boss-card"><span class="inv">Invasion I &middot; built</span><h3>Gravemaw</h3><p>A giant wall-breaker. Walls take triple damage. Each time it smashes one, the cracks in its hide open: strike then.</p></article>
         <article class="boss-card"><span class="inv">Invasion II &middot; planned</span><h3>Mother of Swarms</h3><p>Spawns Husks constantly until she is killed.</p></article>
         <article class="boss-card"><span class="inv">Invasion III &middot; planned</span><h3>The Pale Twins</h3><p>Two bosses on separate lanes. Kill one first and the other enrages.</p></article>
         <article class="boss-card"><span class="inv">Invasion IV &middot; planned</span><h3>The Unmade King</h3><p>A multi-phase final battle, weaker if your heroes destroyed the Heart of the Maw.</p></article>
@@ -375,6 +380,8 @@
         <li class="done"><span class="n"><span>Milestone 2</span><span class="state">Built</span></span><h3>Dungeon prototype</h3><p>One fight with timed strikes and parries that is fun with placeholder art.</p></li>
         <li class="done"><span class="n"><span>Milestone 3</span><span class="state">Built</span></span><h3>Core loop</h3><p>A full countdown and invasion cycle is playable.</p></li>
         <li class="now"><span class="n"><span>Milestone 4</span><span class="state">In progress</span></span><h3>MVP</h3><p>Built in the browser. Now moving to Godot 4.3, then to friends for feedback.</p></li>
+        <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Tactics and story</h3><p>Battle honors and veteran squads, Gravemaw's weak spot, Bait Carts, Vael's Whisper, the Watch Horn relic, Tomas's foresight, refugees with Mimics among them, and last stands.</p></li>
+        <li><span class="n"><span>Update</span><span class="state">Planned</span></span><h3>Art pass</h3><p>Heroes, militia and the Hollow redrawn by hand at 32&times;32, like the walls and buildings.</p></li>
         <li><span class="n"><span>Milestone 5</span><span class="state">Planned</span></span><h3>Vertical slice</h3><p>Act 1 looks and sounds like the final game.</p></li>
         <li><span class="n"><span>Milestone 6</span><span class="state">Planned</span></span><h3>Content</h3><p>The campaign is playable from start to finish.</p></li>
         <li><span class="n"><span>Milestone 7</span><span class="state">Planned</span></span><h3>Polish and release</h3><p>Balance, bug fixing, and launch.</p></li>
@@ -394,6 +401,8 @@
             <li>Invasion I against Gravemaw, with evacuation and downed-hero rescue</li>
             <li>Troops you post during the countdown, who start the battle where you left them</li>
             <li>Hand-drawn 32&times;32 walls, towers and buildings</li>
+            <li>Battle honors, veteran squads, Bait Carts, Vael's Whisper and last stands</li>
+            <li>Tomas's foresight, the Watch Horn relic, and refugees with Mimics among them</li>
             <li>Permanent death, the Memorial Wall and one-slot autosave</li>
           </ul>
         </div>
