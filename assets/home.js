@@ -385,9 +385,9 @@
     ["Isolde Fen", "Hedge witch · mage", "Curious and reckless.", "Frostfire", "freezes a group, then burns it.", "#93b6d8", false, ""],
     ["Mother Ilse", "Priestess · support", "Warm and stubborn.", "Vigil", "heals heroes and lowers Dread.", "#e6d7a8", false, ""],
     ["Habyr", "Lone dungeon-diver", "18, from the burned village of Sabali. Grim, quiet, driven by revenge.", "Hatred", "grows stronger as he fights.", "#b5432a", false, ""],
-    ["Tomas Reed", "Quartermaster", "Nervous, and brilliant with numbers.", "", "Better trade and resource rates.", "#7fa37a", true, ""],
-    ["Vael", "Hollow-touched scout", "Silent, half-monster.", "", "Reveals the invasion early. May betray you.", "#ebe5d8", true, ""],
-    ["Lord Cassian Mare", "Noble rival", "Charming and ambitious.", "", "Undermines morale and Decrees.", "#9a7bb5", true, ""],
+    ["Tomas Reed", "Leader of Greywatch · your advisor", "Nervous, and brilliant with numbers. The man who chose you as Warden.", "", "Brings the dawn report and advises you every day.", "#7fa37a", true, ""],
+    ["Vael", "Hollow-touched scout", "Silent, half-monster, and loyal.", "", "Brings warning of each invasion.", "#ebe5d8", true, ""],
+    ["Cassian Mare", "Rival", "Charming and ambitious. Works against the Warden.", "", "Undermines morale and Decrees.", "#9a7bb5", true, ""],
     ["The Unmade King", "Final antagonist", "Leads the last invasion out of the Maw.", "Invasion IV", "the final boss.", "#ebe5d8", false, ""]
   ];
   var castEl = document.getElementById("cast-list");
