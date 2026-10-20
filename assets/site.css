@@ -755,6 +755,11 @@ input[type=range]::-moz-range-thumb { width: 10px; height: 18px; border-radius: 
 }
 .asset .dl:hover { color: var(--ember); border-color: var(--ember); }
 .note { font-size: var(--step--1); }
+.kit-video { display: grid; gap: 10px; margin: 0 0 18px; }
+.kit-video video { width: 100%; height: auto; display: block; background: var(--abyss); border: 1px solid var(--mortar); image-rendering: pixelated; }
+.shot { margin: 18px 0; display: grid; gap: 8px; }
+.shot img { width: 100%; height: auto; display: block; border: 1px solid var(--mortar); image-rendering: pixelated; }
+.shot figcaption { font-size: var(--step--1); color: var(--fog); }
 .credits { display: grid; margin: 0; border-top: 1px solid var(--mortar); }
 .credits div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding-block: 12px; border-bottom: 1px solid var(--mortar); }
 .credits dt { color: var(--fog); }

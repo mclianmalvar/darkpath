@@ -384,7 +384,7 @@
     ["Bram Holt", "Blacksmith · tank", "Huge, gentle, slow to anger.", "Shieldwall", "holds his ground for 8 s, takes 70% less damage and pulls monsters onto himself.", "#8c9db3", true, "In the city: damaged towers and walls regain 25% health a day."],
     ["Isolde Fen", "Hedge witch · mage", "Curious and reckless.", "Frostfire", "freezes a group, then burns it.", "#93b6d8", false, ""],
     ["Mother Ilse", "Priestess · support", "Warm and stubborn.", "Vigil", "heals heroes and lowers Dread.", "#e6d7a8", false, ""],
-    ["Habyr", "Lone dungeon-diver", "18, from the burned village of Sabali. Grim, quiet, driven by revenge.", "Hatred", "grows stronger as he fights.", "#b5432a", false, ""],
+    ["Habyr", "Lone dungeon-diver", "18, from the burned village of Sabali. Grim, quiet, driven by revenge. Found alone in the Old Mines on the first expedition.", "Hatred", "grows stronger as he fights: in the dungeon with every blow he lands, in battle (G) with every kill.", "#b5432a", true, "In the city: +5 Stone a day from the old seams of the mines."],
     ["Tomas Reed", "Leader of Greywatch · your advisor", "Nervous, and brilliant with numbers. The man who chose you as Warden.", "", "Brings the dawn report and advises you every day.", "#7fa37a", true, ""],
     ["Vael", "Hollow-touched scout", "Silent, half-monster, and loyal.", "", "Brings warning of each invasion.", "#ebe5d8", true, ""],
     ["Cassian Mare", "Rival", "Charming and ambitious. Works against the Warden.", "", "Undermines morale and Decrees.", "#9a7bb5", true, ""],
