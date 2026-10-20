@@ -193,12 +193,13 @@ body::before {
 .front li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 8px; height: 8px; background: var(--ember); }
 .front li strong { color: var(--ash); font-weight: 600; }
 .front.dungeon li::before { background: var(--frost); }
-.keys { display: flex; flex-wrap: wrap; gap: 6px; }
+.keys { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.keys .k { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 kbd {
   font-family: var(--pixel); font-size: 0.7rem; color: var(--ash);
   border: 1px solid var(--mortar); border-bottom-width: 3px; background: var(--stone); padding: 3px 7px;
 }
-.keys span { font-size: var(--step--1); color: var(--fog); align-self: center; margin-right: 10px; }
+.keys .k span { font-size: var(--step--1); color: var(--fog); }
 @media (max-width: 820px) { .fronts { grid-template-columns: 1fr; } }
 
 /* ---------- City ---------- */

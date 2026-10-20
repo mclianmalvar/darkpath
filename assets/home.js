@@ -62,12 +62,14 @@
       text: "The fields beyond the Market Ring. Retaking them is the goal of Act 2, so the Farm Ring is not in the current build.",
       fall: "Citizens left in a breached district are killed. Evacuate them to the Keep's shelters before the walls give." },
     { name: "Outer Wall", pos: "Ring 4 · the first line",
-      text: "The North gate faces the main road and the East gate the flank track. Towers built on top of the walls get +1 range, and units reach the walkway only by the wall stairs.",
+      text: "The North gate faces the main road, a branch of it leads to the North-west gate, and the East gate faces the flank track. The North wall is two tiles thick, so units walk along it and pass each other. Towers built on top of the walls get +1 range, and units reach the walkway only by the wall stairs.",
       fall: "Brutes and Gravemaw smash walls and gates. A tower on a wall falls with it, and every destroyed section becomes a ruin you must clear and rebuild." }
   ];
   var mapCv = document.getElementById("city-map"), mg = mapCv.getContext("2d"), mapTip = document.getElementById("map-tip");
   var ringInfo = document.getElementById("ring-info"), ringTabs = Array.prototype.slice.call(document.querySelectorAll(".ring-tab"));
   var MW = 160, MH = 120, MCX = 80, MCY = 88, RADII = [11, 24, 38, 50];
+  var HORDE = [[8, 2], [4, 1], [6, 2]]; // per lane: walkers, and how many crowds they come in
+  function frac(v) { return v - Math.floor(v); }
   var ringAt = new Int8Array(MW * MH), mapBase, ringBase = [], ringEdge = [], lanes = [], towers = [];
   var selRing = 0, hoverRing = -1, selAt = 0;
   mapCv.width = MW; mapCv.height = MH;
@@ -107,8 +109,8 @@
       }
     }
     // Invasion lanes from the north edge: the main road straight down to the North gate,
-    // and the flank track down the east side to the East gate.
-    lanes = [[[80, 0]], [[126, 0], [143, 26], [146, 70]]].map(function (way) {
+    // a branch of it to the North-west gate, and the flank track down the east side to the East gate.
+    lanes = [[[80, 0]], [[80, 0], [80, 27], [63, 33]], [[126, 0], [143, 26], [146, 70]]].map(function (way) {
       var pts = [], path = way.concat([[MCX, MCY]]), done = false;
       for (var s = 0; s < path.length - 1 && !done; s++) {
         var ax = path[s][0], ay = path[s][1], bx = path[s + 1][0], by = path[s + 1][1], len = Math.hypot(bx - ax, by - ay);
@@ -173,13 +175,20 @@
       mg.fillStyle = reduce || Math.sin(t * 0.01 + i * 1.9) > -0.3 ? "#ef7b31" : "#9c4519";
       mg.fillRect(tw.x + 1, tw.y - 1, 1, 1);
     });
-    // The Hollow march down the lanes toward the gates
+    // The Hollow march down the lanes toward the gates: loose crowds, each one off to its own side
     mg.fillStyle = "#e2dccf";
     lanes.forEach(function (lane, li) {
-      for (var k = 0; k < 4; k++) {
-        var prog = reduce ? (k + 0.5) / 4 : (t * 0.00006 * (1 + li * 0.2) + k / 4 + li * 0.13) % 1;
-        var p = lane[Math.floor(prog * (lane.length - 1))];
-        mg.fillRect(p[0], p[1], 1, 1);
+      var n = HORDE[li][0], crowds = HORDE[li][1], last = lane.length - 1;
+      for (var k = 0; k < n; k++) {
+        var h1 = frac(Math.sin(k * 12.9898 + li * 78.233) * 43758.5453), h2 = frac(h1 * 91.7 + k * 0.37);
+        var at = (k % crowds + 0.5) / crowds + (h2 - 0.5) * 0.12;
+        var prog = frac(reduce ? at : t * 0.00006 * (1 + li * 0.2) + at + li * 0.13);
+        var i = Math.floor(prog * last), p = lane[i], q = lane[Math.min(last, i + 2)], o = lane[Math.max(0, i - 2)];
+        var dx = q[0] - o[0], dy = q[1] - o[1], dl = Math.hypot(dx, dy) || 1;
+        var side = (h1 - 0.5) * 5 + (reduce ? 0 : Math.sin(t * 0.002 + k * 1.7) * 0.6);
+        var x = Math.round(p[0] - dy / dl * side), y = Math.round(p[1] + dx / dl * side);
+        if (x < 0 || x >= MW || y < 0 || y >= MH || ringAt[y * MW + x] !== -1) { x = p[0]; y = p[1]; }
+        mg.fillRect(x, y, 1, 1);
       }
     });
   }

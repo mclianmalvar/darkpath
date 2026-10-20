@@ -35,6 +35,15 @@ Open `devlog.html`, copy one `<article class="post">` block, paste it at the top
 
 To send the home page's Follow button to an itch.io page or a Discord server instead of this repository, set `FOLLOW_URL` near the bottom of `assets/site.js`.
 
+### Keeping up with the game
+
+Every update to the game also comes to this site, in the same piece of work:
+
+- a devlog post at the top of `devlog.html`
+- the feature lists and key rows in `index.html`, the roadmap, and anything marked built or planned
+- the Greywatch map and ring texts in `assets/home.js` when gates, roads or walls change
+- `faq.html` and `presskit.html` when controls or key features change
+
 ## Status
 
 The game design document reached v1.0 on October 19, 2026. Act 1 (the Prologue, a 10-day countdown, the Old Mines and Invasion I) is built as a browser MVP, and the Godot 4.3 version is in progress.
