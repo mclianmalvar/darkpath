@@ -58,9 +58,9 @@
     { name: "Market Ring", pos: "Ring 2",
       text: "Where the Prologue's Brutes strike the gate. Hold the walls on Day 1 and the Market Ring stays open.",
       fall: "Lose the Prologue and it falls on Day 1. Its buildings stop working until you reclaim it during Act 1." },
-    { name: "Farm Ring", pos: "Ring 3 · planned",
-      text: "The fields beyond the Market Ring. Retaking them is the goal of Act 2, so the Farm Ring is not in the current build.",
-      fall: "Citizens left in a breached district are killed. Evacuate them to the Keep's shelters before the walls give." },
+    { name: "Farm Ring", pos: "Ring 3",
+      text: "The fields north of the walls. From Act 2 you can retake them: the farmers come home, buildings go up in the fields, and Farms there yield half again as much.",
+      fall: "It lies outside the walls, in the Hollow's way, so its walls are yours to build. Burn the Outskirts burns every building in it to close the east track." },
     { name: "Outer Wall", pos: "Ring 4 · the first line",
       text: "The North gate faces the main road, a branch of it leads to the North-west gate, and the East gate faces the flank track. The North wall is two tiles thick, so units walk along it and pass each other. Towers built on top of the walls get +1 range, and units reach the walkway only by the wall stairs.",
       fall: "Brutes and Gravemaw smash walls and gates, and every blow shakes the defenders standing on them. A tower on a wall falls with it, defenders on a breaking wall fall to the ground, and every destroyed section becomes a ruin you must clear and rebuild." }
@@ -263,14 +263,14 @@
     ["Husk", "Swarm", "Slow and weak. Arrives in large groups.", "Flame Pit, Catapult", true],
     ["Runner", "Fast", "Sprints past slow towers.", "Frost Bell, Spearmen", true],
     ["Brute", "Tank", "Smashes walls and barricades. Its blows shake the defenders on the wall.", "Ballista, Shieldbearers", true],
-    ["Spitter", "Ranged", "Attacks towers from range.", "Archer Post, Bowmen"],
+    ["Spitter", "Ranged", "Stops a few tiles off and spits bile at defenders, on the walls too, and at towers.", "Archer Post, Sera", true],
     ["Gloomwing", "Flyer", "Flies over walls and hunts the defenders standing on them.", "Archer Post, Arcane Spire", true],
-    ["Burrower", "Tunneler", "Digs under walls, unseen until revealed.", "Watchtower"],
-    ["Shrieker", "Support", "Speeds up and shields nearby monsters.", "Ballista, kill it first"],
+    ["Burrower", "Tunneler", "Tunnels under walls and gates, out of reach, and comes up inside.", "A squad waiting behind the walls", true],
+    ["Shrieker", "Support", "Shields the Hollow around it and hurries them on.", "Ballista, kill it first", true],
     ["Mimic", "Trick", "Hides among refugees you take in, and turns on the Market Ring from inside the walls.", "Vael, Spearmen", true],
-    ["Climber", "Siege beast", "Scales walls directly, ignoring gates.", "Bowmen and Spearmen on the walls"],
-    ["Ram", "Siege beast", "Heavily armored. Triple damage to gates.", "Ballista, Cannon, Oil Trench"],
-    ["Bile Mortar", "Siege beast", "Lobs bile at towers from outside their range.", "Trebuchet, Catapult, a hero sortie"]
+    ["Climber", "Siege beast", "Scales walls and gates, striking the defenders on the walkway as it goes over.", "Archer Posts and Spearmen on the walls", true],
+    ["Ram", "Siege beast", "Heavily armored. Goes for the gates and deals them triple damage.", "Ballista, and Bram in the gateway", true],
+    ["Bile Mortar", "Siege beast", "Lobs bile at towers from beyond their reach, then at the walls.", "Catapult, or a hero sortie", true]
   ];
   var roster = document.getElementById("roster");
   var bestCount = document.getElementById("bestiary-count"), bestMeter = document.getElementById("bestiary-meter");
@@ -388,7 +388,7 @@
     ["Tomas Reed", "Leader of Greywatch · your advisor", "Nervous, and brilliant with numbers. The man who chose you as Warden.", "", "Brings the dawn report and advises you every day.", "#7fa37a", true, ""],
     ["Vael", "Hollow-touched scout", "Silent, half-monster, and loyal.", "", "Brings warning of each invasion.", "#ebe5d8", true, ""],
     ["Cassian Mare", "Rival", "Charming and ambitious. Works against the Warden.", "", "Undermines morale and Decrees.", "#9a7bb5", true, ""],
-    ["The Unmade King", "Final antagonist", "Leads the last invasion out of the Maw.", "Invasion IV", "the final boss.", "#ebe5d8", false, ""]
+    ["The Unmade King", "Final antagonist", "The old king of Veyra, reborn in the Maw. Leads the last invasion.", "Invasion IV", "the final boss: his crown breaks at 60% health, and at 25% he is unmade.", "#ebe5d8", true, ""]
   ];
   var castEl = document.getElementById("cast-list");
   cast.forEach(function (h, i) {
