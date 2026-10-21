@@ -53,7 +53,7 @@
   /* ---------- Greywatch map ---------- */
   var RINGS = [
     { name: "Inner Keep", pos: "Ring 1 · the heart",
-      text: "The Warden's seat and the city's last refuge. When you evacuate the Market Ring, its citizens walk here. Shelters to hold them are planned for the full game.",
+      text: "The Warden's seat and the city's last refuge. When you evacuate the Market Ring, its citizens walk here. Build Shelters to hold them: crowd more in and morale suffers.",
       fall: "If the Hollow reach the Keep's heart, Greywatch falls and the campaign ends." },
     { name: "Market Ring", pos: "Ring 2",
       text: "Where the Prologue's Brutes strike the gate. Hold the walls on Day 1 and the Market Ring stays open.",
