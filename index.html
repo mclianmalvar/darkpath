@@ -92,11 +92,12 @@
     <div class="wrap">
       <blockquote>Survival is the <em>only</em> reward.</blockquote>
       <div class="copy">
-        <p>There are no unlocks between campaigns and no help after a defeat. Loot and upgrades are tools for staying alive. When a campaign ends, nothing carries over. Your score is the number of people still alive in Greywatch, shown with the names of the heroes who made it.</p>
+        <p>There are no unlocks between campaigns and no help after a defeat. Loot and upgrades are tools for staying alive. When a campaign ends, nothing carries over but its record. Your score is the number of people still alive in Greywatch, shown with the names of the heroes who made it.</p>
         <dl class="facts">
           <div><dt>Perspective</dt><dd>2D pixel art. Top-down city, side-view dungeons</dd></div>
           <div><dt>Campaign</dt><dd>4 invasions across 4 acts, about 15 to 20 hours</dd></div>
           <div><dt>Difficulty</dt><dd>Steward, Warden or Tyrant. Autosave only</dd></div>
+          <div><dt>Modes</dt><dd>The Campaign, Endless, and two Challenges: No Walls and No Dungeons</dd></div>
           <div><dt>Rating target</dt><dd>Teen. Fantasy violence, no gore</dd></div>
         </dl>
       </div>
@@ -118,7 +119,7 @@
         <span><i class="scout"></i>Day 25: scout report</span>
         <span><i class="inv"></i>Invasion</span>
       </div>
-      <p class="build-note"><b>Current build</b>At a new game you choose Act 1's length: the full 30 days, with the scout report on Day 25, or a short 10-day version with it on Day 7.</p>
+      <p class="build-note"><b>Current build</b>At a new game you choose the mode, the difficulty and the length: Full, with Act 1's 30 days and the scout report on Day 25, or Short, with a 10-day Act 1 and the scout report on Day 7. In Endless, every countdown after the fourth act is shorter than the last.</p>
 
       <ol class="phases">
         <li><span class="n">1 &middot; Dawn</span><h3>Report</h3><p>Days left, hero status and expedition results, and what Tomas foresees for the invasion. Every few days a city event is drawn, like refugees at the gate.</p></li>
@@ -394,7 +395,7 @@
         <li class="done"><span class="n"><span>Milestone 1</span><span class="state">Built</span></span><h3>Defense prototype</h3><p>A tower kills monsters walking a path.</p></li>
         <li class="done"><span class="n"><span>Milestone 2</span><span class="state">Built</span></span><h3>Dungeon prototype</h3><p>One fight with timed strikes and parries that is fun with placeholder art.</p></li>
         <li class="done"><span class="n"><span>Milestone 3</span><span class="state">Built</span></span><h3>Core loop</h3><p>A full countdown and invasion cycle is playable.</p></li>
-        <li class="now"><span class="n"><span>Milestone 4</span><span class="state">In progress</span></span><h3>MVP</h3><p>Built in the browser, then in Godot 4.3. A Windows playtest build is out for feedback.</p></li>
+        <li class="done"><span class="n"><span>Milestone 4</span><span class="state">Built</span></span><h3>MVP</h3><p>Built in the browser, then in Godot 4.3. A Windows playtest build is out for feedback.</p></li>
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Tactics and story</h3><p>Battle honors and veteran squads, Gravemaw's weak spot, Bait Carts, Vael's Whisper, the Watch Horn relic, Tomas's foresight, refugees with Mimics among them, and last stands.</p></li>
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Art pass</h3><p>Heroes, militia and the Hollow redrawn by hand at 32&times;32, with walk cycles, strikes and a collapse when they fall.</p></li>
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Act 1 in full</h3><p>Habyr, the first three Decrees, the full 30-day countdown, music and ambience, settings, and a downloadable Windows build.</p></li>
@@ -402,10 +403,10 @@
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Into the deep</h3><p>The Drowned Crypts, the Ashen Warrens and the Root of the Maw, with their bosses and Relics; Short, Medium and Long runs; Isolde, Mother Ilse, and recruits from the Inn.</p></li>
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>The full arsenal</h3><p>Five more defenses, a choice of two branches at every defense's last step, three synergies, the Trebuchet and the Cannon, and four kinds of ammo.</p></li>
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Weather, bonds and the Bestiary</h3><p>Weather and Omens, Shelters, invasions that adapt, the Bestiary, hero bonds and Grief, Hollow Taint, and the Memorial's legacies.</p></li>
-        <li><span class="n"><span>Milestone 5</span><span class="state">Planned</span></span><h3>Vertical slice</h3><p>Act 1 looks and sounds like the final game.</p></li>
+        <li class="done"><span class="n"><span>Milestone 5</span><span class="state">Built</span></span><h3>Vertical slice</h3><p>Act 1 looks and sounds like the final game: hand-drawn art, music and ambience.</p></li>
         <li class="done"><span class="n"><span>Milestone 6</span><span class="state">Built</span></span><h3>Content</h3><p>The campaign is playable from start to finish, with every act, region, hero, defense and system in the design.</p></li>
-        <li><span class="n"><span>Milestone 7</span><span class="state">Planned</span></span><h3>Polish and release</h3><p>Balance, bug fixing, and launch.</p></li>
-        <li><span class="n"><span>Milestone 8</span><span class="state">Planned</span></span><h3>Endless mode</h3><p>A free post-launch update, ranked by days survived.</p></li>
+        <li class="now"><span class="n"><span>Milestone 7</span><span class="state">In progress</span></span><h3>Polish and release</h3><p>Balance, bug fixing, and launch. The playtest build is out and the balance runs continue; the launch is still to come.</p></li>
+        <li class="done"><span class="n"><span>Milestone 8</span><span class="state">Built</span></span><h3>Endless mode</h3><p>Built ahead of launch: after Invasion IV the Hollow keep coming, ranked by days survived. With it, the No Walls and No Dungeons Challenges.</p></li>
       </ol>
       <div class="scope">
         <div class="scope-col built">
@@ -433,12 +434,14 @@
             <li>Weather, Omens, Shelters, and invasions that adapt to your defenses</li>
             <li>The Bestiary, hero bonds and Grief, Hollow Taint, and the Memorial's legacies</li>
             <li>Permanent death, the Memorial Wall and one-slot autosave</li>
+            <li>Endless mode, and the No Walls and No Dungeons Challenges, with records kept on the title screen</li>
           </ul>
         </div>
         <div class="scope-col">
           <p class="side-label">Planned</p>
           <ul class="ticks planned">
-            <li>Endless mode and Challenges</li>
+            <li>Polish, and the launch</li>
+            <li>Mac and Linux builds</li>
           </ul>
         </div>
       </div>
