@@ -164,6 +164,7 @@
             <li><strong>A last stand.</strong> A downed hero can spend their last seconds on their feet, unbreakable, and their example steels everyone else for the rest of the battle.</li>
             <li><strong>Post them before the horn.</strong> During the countdown your troops stand in the city and take the same orders. Wherever they stand when the last day ends is where the battle begins.</li>
             <li><strong>Crewed siege engines with firing arcs.</strong> Put a squad on the Catapult, the Trebuchet or the Cannon and it fires on its own, but only into its firing arc: a wedge in front of it, shown in orange when you select it, as in Total War. Click to turn it; it swings round at its own pace, the Trebuchet slowest. It spends the ammo you stockpiled: Stone Shot or Fire Pots, Iron Shot or Grapeshot (T switches it). A Catapult's or Trebuchet's shot bursts in a cone that sprays on past where it lands. The Cannon is loud: Gloomwings come for its crew.</li>
+            <li><strong>A larger city.</strong> The Godot source expands Greywatch to 64&times;64 tiles, with two new wards behind extended curtain walls. Defenders and the Hollow have richer walking, idle and attack motion.</li>
             <li><strong>The Phalanx.</strong> Select Spearmen, press P and click where they should face. In the Godot source, the formation uses their current steel-rimmed wooden shields. They lock shields in ranks and hold there: their spears reach over the front rank, they hit harder and shrug off half of every blow from the front, but they strike only the Hollow in front of them.</li>
             <li><strong>Time of day, weather and Omens.</strong> The Hollow arrive at dawn, noon, dusk or night, in clear skies, rain, fog, snow or wind, and from the second invasion under an Omen such as a Blood Moon. The scout report tells you, so the last days of the countdown are for adapting.</li>
             <li><strong>The Hollow adapt.</strong> If one kind of tower deals more than 40% of the damage in an invasion, the next host resists it.</li>
@@ -234,7 +235,7 @@
         <div class="sub">
           <span class="label">Buildings</span>
           <div class="chips"><span class="built">Farm</span><span class="built">Quarry</span><span class="built">Lumber Yard</span><span class="built">Market</span><span class="built">Barracks</span><span class="built">Workshop</span><span class="built">Inn</span><span class="built">Shelter</span></div>
-          <p class="chips-note">The Workshop forges better weapons and armor for the militia and the heroes. The Inn hires recruits. In the Godot source, structure sprites now use 128&times;128 textures with timber grain and chipped masonry.</p>
+          <p class="chips-note">The Workshop forges better weapons and armor for the militia and the heroes. The Inn hires recruits. In the Godot source, nine city buildings and six defense families now have detailed 128&times;128 artwork, with weathered stone, timber bracing and distinct tower upgrades.</p>
         </div>
         <div class="sub">
           <span class="label">Siege engines</span>
@@ -271,7 +272,7 @@
       <div class="section-head">
         <p class="eyebrow">The torch meter</p>
         <h2>The darker the room, the better the loot.</h2>
-        <p class="lede">Your party carries a torch that burns down as it explores. You can push on into the dark on purpose. It is more dangerous, and it pays better. The Godot source now gives heroes detailed 128&times;128 sprite artwork with sculpted faces, armor and robes; dungeon enemies also have finer material detail.</p>
+        <p class="lede">Your party carries a torch that burns down as it explores. You can push on into the dark on purpose. It is more dangerous, and it pays better. The Godot source gives heroes detailed 128&times;128 artwork, eight-frame walks, idle breathing and attack/recovery motion. Dungeon enemies also animate, and heroes turn as they explore.</p>
       </div>
       <div class="torch-box">
         <div class="corridor" id="corridor"><canvas id="corridor-canvas" aria-hidden="true"></canvas></div>
@@ -398,6 +399,7 @@
         <li class="done"><span class="n"><span>Milestone 3</span><span class="state">Built</span></span><h3>Core loop</h3><p>A full countdown and invasion cycle is playable.</p></li>
         <li class="done"><span class="n"><span>Milestone 4</span><span class="state">Built</span></span><h3>MVP</h3><p>Built in the browser, then in Godot 4.3. A Windows playtest build is out for feedback.</p></li>
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Tactics and story</h3><p>Battle honors and veteran squads, Gravemaw's weak spot, Bait Carts, Vael's Whisper, the Watch Horn relic, Tomas's foresight, refugees with Mimics among them, and last stands.</p></li>
+        <li class="done"><span class="n"><span>Source update</span><span class="state">Built</span></span><h3>Greywatch expands</h3><p>A 64&times;64 map with eastern and southern wards, extended walls, new stairs and more building plots. Detailed city and defense artwork, plus expanded character animation cycles. Older saves migrate automatically; download unchanged.</p></li>
         <li class="done"><span class="n"><span>Source update</span><span class="state">Built</span></span><h3>128&times;128 sprites</h3><p>Detailed new defender artwork with layered armor, sculpted faces and distinct weapons, alongside finer material detail across structures and dungeon figures. The downloadable playtest build still uses its earlier art.</p></li>
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Art pass</h3><p>Heroes, militia and the Hollow redrawn by hand at 32&times;32, with walk cycles, strikes and a collapse when they fall.</p></li>
         <li class="done"><span class="n"><span>Update</span><span class="state">Built</span></span><h3>Act 1 in full</h3><p>Habyr, the first three Decrees, the full 30-day countdown, music and ambience, settings, and a downloadable Windows build.</p></li>

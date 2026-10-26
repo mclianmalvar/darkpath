@@ -56,87 +56,94 @@
       text: "The Warden's seat and the city's last refuge. When you evacuate the Market Ring, its citizens walk here. Build Shelters to hold them: crowd more in and morale suffers.",
       fall: "If the Hollow reach the Keep's heart, Greywatch falls and the campaign ends." },
     { name: "Market Ring", pos: "Ring 2",
-      text: "Where the Prologue's Brutes strike the gate. Hold the walls on Day 1 and the Market Ring stays open. The Godot source now gives its structures 128×128 sprite textures with finer wood and stone detail.",
+      text: "Hold the North gate on Day 1 to keep the Market Ring open. In the Godot source, Greywatch now spans 64×64 tiles, with eastern and southern wards, connecting streets and more building plots. Both wards belong to the Market Ring and follow its loss and reclamation rules.",
       fall: "Lose the Prologue and it falls on Day 1. Its buildings stop working until you reclaim it during Act 1." },
     { name: "Farm Ring", pos: "Ring 3",
       text: "The fields north of the walls. From Act 2 you can retake them: the farmers come home, buildings go up in the fields, and Farms there yield half again as much.",
       fall: "It lies outside the walls, in the Hollow's way, so its walls are yours to build. Burn the Outskirts burns every building in it to close the east track." },
     { name: "Outer Wall", pos: "Ring 4 · the first line",
-      text: "The North gate faces the main road, a branch of it leads to the North-west gate, and the East gate faces the flank track. The North wall is two tiles thick, so units walk along it and pass each other. Towers built on top of the walls get +1 range, and units reach the walkway only by the wall stairs.",
+      text: "The North gate is the only outside entrance. The North-west and East gates are walled up. The expanded curtain encloses the new wards; the old eastern wall remains an inner defense. The North wall is two tiles thick, so units walk along it and pass each other. Towers built on top of the walls get +1 range, and units reach the walkway only by the wall stairs.",
       fall: "Brutes and Gravemaw smash walls and gates, and every blow shakes the defenders standing on them. A tower on a wall falls with it, defenders on a breaking wall fall to the ground, and every destroyed section becomes a ruin you must clear and rebuild." }
   ];
   var mapCv = document.getElementById("city-map"), mg = mapCv.getContext("2d"), mapTip = document.getElementById("map-tip");
   var ringInfo = document.getElementById("ring-info"), ringTabs = Array.prototype.slice.call(document.querySelectorAll(".ring-tab"));
-  var MW = 160, MH = 120, MCX = 80, MCY = 88, RADII = [11, 24, 38, 50];
+  var MW = 160, MH = 128, MCX = 65, MCY = 81;
   var HORDE = [[8, 2], [4, 1], [6, 2]]; // per lane: walkers, and how many crowds they come in
   function frac(v) { return v - Math.floor(v); }
   var ringAt = new Int8Array(MW * MH), mapBase, ringBase = [], ringEdge = [], lanes = [], towers = [];
   var selRing = 0, hoverRing = -1, selAt = 0;
   mapCv.width = MW; mapCv.height = MH;
 
-  function ringShape(t) { return 1 + 0.05 * Math.sin(3 * t + 0.5) + 0.03 * Math.sin(7 * t + 2); }
-  function coastY(x) { return 104 + 3 * Math.sin(x * 0.11) + 2 * Math.sin(x * 0.29); }
+  function coastY(x) { return 120; }
 
   function buildMap() {
     var r = rng(2024);
     mapBase = document.createElement("canvas"); mapBase.width = MW; mapBase.height = MH;
     var g = mapBase.getContext("2d");
     function px(x, y, c) { g.fillStyle = c; g.fillRect(x, y, 1, 1); }
-    var ROOFS = ["#3d2b23", "#46322a", "#352720"];
+    // Schematic of the source game's 64x64 layout: two canvas pixels per tile.
+    // The old core stays in place; new wards extend east and south to the sea.
+    function inRect(x, y, x0, y0, x1, y1) {
+      return x >= x0 && x <= x1 && y >= y0 && y <= y1;
+    }
+    function wall(x, y) {
+      return (inRect(x, y, 13, 21, 58, 22) && x !== 23 && x !== 24) ||
+        (x === 13 && y >= 23 && y <= 59) || (x === 58 && y >= 23 && y <= 59) ||
+        (x === 34 && y >= 23 && y <= 43) ||
+        (y === 36 && x >= 20 && x <= 27 && x !== 23 && x !== 24) ||
+        ((x === 20 || x === 27) && y >= 37 && y <= 43);
+    }
     for (var y = 0; y < MH; y++) {
       for (var x = 0; x < MW; x++) {
-        var dx = x - MCX, dy = y - MCY, t = Math.atan2(dy, dx), d = Math.hypot(dx, dy) / ringShape(t);
-        var sea = y >= coastY(x);
-        var ring = sea ? -1 : d < RADII[0] ? 0 : d < RADII[1] ? 1 : d < RADII[2] ? 2 : d < RADII[3] ? 3 : -1;
+        var tx = Math.floor((x - 16) / 2), ty = Math.floor(y / 2);
+        var sea = ty >= 60;
+        var keep = inRect(tx, ty, 21, 37, 26, 43);
+        var market = inRect(tx, ty, 14, 23, 33, 43) || inRect(tx, ty, 35, 23, 57, 59) || inRect(tx, ty, 14, 44, 34, 59);
+        var farm = inRect(tx, ty, 12, 11, 34, 20);
+        var isWall = wall(tx, ty);
+        var ring = sea ? -1 : isWall ? 3 : keep ? 0 : market ? 1 : farm ? 2 : -1;
         ringAt[y * MW + x] = ring;
         var c;
-        if (sea) c = y < coastY(x) + 1.5 ? "#2a3a4f" : (y % 3 === 0 ? "#0d1320" : "#0b1018");
-        else if (ring === -1 && (x < 18 || x > MW - 19) && r() < 0.6) c = r() < 0.5 ? "#16201a" : "#1c2a21"; // forest on both flanks
-        else if (ring === -1) c = r() < 0.04 ? "#1c2230" : ((x + y) % 2 ? "#12161e" : "#141922");
-        else if (ring === 3) c = d > RADII[3] - 1.2 ? "#5b6476" : d > RADII[3] - 4 ? "#3d4555" : "#171c25";
-        else if (ring === 2) {
-          var sector = Math.floor((t + Math.PI) / (Math.PI / 4));
-          var stripe = Math.floor((sector % 2 ? x + y : x - y + 200) / 2) % 2;
-          c = d > RADII[2] - 1 ? "#2e3542" : sector % 3 === 0 ? (stripe ? "#2a2620" : "#2f2a22") : (stripe ? "#262c1c" : "#2d3421");
-        }
-        else if (ring === 1) {
-          if (d > RADII[1] - 1) c = "#343c4b";
-          else if (x % 5 === 0 || y % 4 === 0) c = "#161a22";
-          else c = r() < 0.04 ? "#d98a3a" : ROOFS[(Math.floor(x / 5) * 7 + Math.floor(y / 4) * 3) % 3];
-        }
-        else c = d > RADII[0] - 1 ? "#3d4555" : "#20252f";
+        if (sea) c = ty === 60 ? "#3d4555" : (y % 3 === 0 ? "#15263a" : "#0d1725");
+        else if (isWall) c = y % 2 === 0 ? "#7b7b82" : "#4a4c56";
+        else if (keep) c = (x + y) % 3 === 0 ? "#454552" : "#30313d";
+        else if (market) c = r() < 0.07 ? "#6c5741" : "#38352e";
+        else if (farm) c = ty % 3 === 0 ? "#49432c" : "#333b25";
+        else c = r() < 0.3 ? "#263326" : "#18241d";
+        var street = ((tx === 23 || tx === 24) && ty <= 59) ||
+          ((tx === 44 || tx === 45) && ty >= 23 && ty <= 59) ||
+          ((ty === 46 || ty === 47) && tx >= 14 && tx <= 57) ||
+          ((ty === 30 || ty === 31) && tx >= 25 && tx <= 57);
+        if (!sea && !isWall && street) c = "#625641";
         px(x, y, c);
       }
     }
-    // Invasion lanes from the north edge: the main road straight down to the North gate,
-    // a branch of it to the North-west gate, and the flank track down the east side to the East gate.
-    lanes = [[[80, 0]], [[80, 0], [80, 27], [63, 33]], [[126, 0], [143, 26], [146, 70]]].map(function (way) {
-      var pts = [], path = way.concat([[MCX, MCY]]), done = false;
-      for (var s = 0; s < path.length - 1 && !done; s++) {
-        var ax = path[s][0], ay = path[s][1], bx = path[s + 1][0], by = path[s + 1][1], len = Math.hypot(bx - ax, by - ay);
-        for (var k = 0; k <= len; k++) {
-          var f = k / len;
-          var lx = Math.max(0, Math.min(MW - 2, Math.round(ax + (bx - ax) * f + Math.sin(pts.length * 0.2) * 1.2)));
-          var ly = Math.round(ay + (by - ay) * f);
-          if (ringAt[ly * MW + lx] !== -1) { done = true; break; }
-          pts.push([lx, ly]);
-          px(lx, ly, "#1f242e"); px(lx + 1, ly, "#1f242e");
-        }
+    // Only the main road has a gate. The eastern approach ends at the curtain.
+    lanes = [[[65, 0], [65, 41]], [[87, 0], [87, 41]]].map(function (ends, index) {
+      var pts = [];
+      for (var yy = ends[0][1]; yy <= ends[1][1]; yy++) {
+        pts.push([ends[0][0], yy]);
+        px(ends[0][0], yy, "#625641");
+        px(ends[0][0] + 1, yy, "#625641");
       }
-      var gate = pts[pts.length - 1];
-      g.fillStyle = "#2b1a12"; g.fillRect(gate[0] - 1, gate[1], 3, 3);
+      if (index === 0) {
+        g.fillStyle = "#9a693d"; g.fillRect(62, 42, 4, 4);
+      }
       return pts;
     });
-    // Towers along the wall
+    g.fillStyle = "#9a693d"; g.fillRect(62, 72, 4, 2); // Keep gate
+    // Residential clusters and the ward plazas leave broad building plots open.
+    [[50,25], [54,27], [50,34], [54,35], [51,40], [55,41], [16,50], [31,53], [37,50], [49,53], [53,56], [16,26], [31,39]].forEach(function (p) {
+      g.fillStyle = "#88704d"; g.fillRect(16 + p[0] * 2, p[1] * 2, 3, 3);
+      g.fillStyle = "#594b48"; g.fillRect(16 + p[0] * 2 - 1, p[1] * 2 - 1, 5, 2);
+    });
     towers = [];
-    for (var a = 0; a < 15; a++) {
-      var ta = a / 15 * Math.PI * 2, R = (RADII[3] - 2.5) * ringShape(ta);
-      var tx = Math.round(MCX + Math.cos(ta) * R) - 1, ty = Math.round(MCY + Math.sin(ta) * R) - 1;
-      if (ty + 3 >= coastY(tx)) continue;
-      g.fillStyle = "#4a5262"; g.fillRect(tx, ty, 3, 3);
-      g.fillStyle = "#5b6476"; g.fillRect(tx, ty, 3, 1);
+    [[19,21], [29,21], [40,21], [52,21], [58,36], [58,52], [13,52]].forEach(function (p) {
+      var tx = 16 + p[0] * 2, ty = p[1] * 2;
+      g.fillStyle = "#85808a"; g.fillRect(tx - 1, ty - 2, 3, 4);
+      g.fillStyle = "#b18b53"; g.fillRect(tx, ty - 1, 1, 1);
       towers.push({ x: tx, y: ty });
-    }
+    });
     // The keep and its banner
     g.fillStyle = "#2b303b"; g.fillRect(MCX - 5, MCY - 5, 10, 10);
     g.fillStyle = "#4a5160"; g.fillRect(MCX - 4, MCY - 4, 8, 8);
