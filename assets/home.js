@@ -56,7 +56,7 @@
       text: "The Warden's seat and the city's last refuge. When you evacuate the Market Ring, its citizens walk here. Build Shelters to hold them: crowd more in and morale suffers.",
       fall: "If the Hollow reach the Keep's heart, Greywatch falls and the campaign ends." },
     { name: "Market Ring", pos: "Ring 2",
-      text: "Where the Prologue's Brutes strike the gate. Hold the walls on Day 1 and the Market Ring stays open.",
+      text: "Where the Prologue's Brutes strike the gate. Hold the walls on Day 1 and the Market Ring stays open. The Godot source now gives its structures 128×128 sprite textures with finer wood and stone detail.",
       fall: "Lose the Prologue and it falls on Day 1. Its buildings stop working until you reclaim it during Act 1." },
     { name: "Farm Ring", pos: "Ring 3",
       text: "The fields north of the walls. From Act 2 you can retake them: the farmers come home, buildings go up in the fields, and Farms there yield half again as much.",
